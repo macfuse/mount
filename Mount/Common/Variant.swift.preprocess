@@ -1,0 +1,21 @@
+//
+//  Variant.swift.preprocess
+//  Mount
+//
+//  Copyright (c) 2026 Benjamin Fleischer
+//  All rights reserved.
+//
+//  This framework can be distributed under the terms of the GNU LGPL. See the file LICENSE.txt.
+//
+
+internal enum Variant {
+    internal static let identifier = "$(FUSE_BUNDLE_IDENTIFIER_PREFIX)"
+
+    internal static let name = "$(FUSE_NAME)"
+    internal static let displayName = "$(FUSE_DISPLAY_NAME)"
+    internal static let productName = "$(FUSE_PRODUCT_NAME)"
+
+    internal static let developmentTeam = "$(DEVELOPMENT_TEAM)"
+
+    internal static let mountMachService = "$(FUSE_MOUNT_MACHSERVICE)"
+}
