@@ -1,0 +1,329 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "enableFileSystemExtension.cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "enableFileSystemExtension.gettingStarted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Getting Started Guide öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Getting Started Guide"
+          }
+        }
+      }
+    },
+    "enableFileSystemExtension.header" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dateisystemerweiterung aktivieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable File System Extension"
+          }
+        }
+      }
+    },
+    "enableFileSystemExtension.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiviere die %1$(productName)@ Dateisystemerweiterung.\n\nÖffne Systemeinstellungen › Allgemein › Anmeldeobjekte & Erweiterungen. Klicke unter Erweiterungen auf Nach Kategorie. Klicke neben Dateisystemerweiterungen auf das Info-Symbol und aktiviere die %1$(productName)@ Dateisystemerweiterung.\n\nVersuche anschließend erneut, das Volume einzubinden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable the %1$(productName)@ file system extension.\n\nOpen System Settings › General › Login Items & Extensions. Under Extensions, click By Category. Click the info symbol next to File System Extensions and enable the %1$(productName)@ file system extension.\n\nThen try mounting the volume again."
+          }
+        }
+      }
+    },
+    "enableFileSystemExtension.systemSettings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Systemeinstellungen öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open System Settings"
+          }
+        }
+      }
+    },
+    "installHelperTools.cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "installHelperTools.gettingStarted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Getting Started Guide öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Getting Started Guide"
+          }
+        }
+      }
+    },
+    "installHelperTools.header" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hilfsprogramm installieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install Helper Tool"
+          }
+        }
+      }
+    },
+    "installHelperTools.install" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hilfsprogramm installieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install Helper Tool"
+          }
+        }
+      }
+    },
+    "installHelperTools.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installiere das Hilfsprogramm, das zum Einbinden von %1$(productName)@ Volumes erforderlich ist. Gib dazu den Namen und das Passwort eines Administrators ein.\n\nDas Volume wird anschließend automatisch eingebunden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install the helper tool required to mount %1$(productName)@ volumes. Enter an administrator name and password to continue.\n\nAfter the helper tool is installed, the volume is mounted automatically."
+          }
+        }
+      }
+    },
+    "registerFileSystemExtension.cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "registerFileSystemExtension.gettingStarted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Getting Started Guide öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Getting Started Guide"
+          }
+        }
+      }
+    },
+    "registerFileSystemExtension.header" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dateisystemerweiterung registrieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register File System Extension"
+          }
+        }
+      }
+    },
+    "registerFileSystemExtension.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registriere die %1$(productName)@ Dateisystemerweiterung.\n\nStarte deinen Mac neu und versuche anschließend erneut, das Volume einzubinden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register the %1$(productName)@ file system extension.\n\nRestart your Mac, then try mounting the volume again."
+          }
+        }
+      }
+    },
+    "registerFileSystemExtension.register" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dateisystemerweiterung registrieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register File System Extension"
+          }
+        }
+      }
+    },
+    "unexpectedError.cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "unexpectedError.header" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unerwarteter Fehler"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unexpected Error"
+          }
+        }
+      }
+    },
+    "unexpectedError.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beim Einbinden des %1$(productName)@ Volumes ist ein unerwarteter Fehler aufgetreten.\n\nStelle sicher, dass du die neueste Version von %1$(productName)@ verwendest.\n\nFalls das Problem weiterhin auftritt, findest du weitere Informationen im Troubleshooting Guide."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An unexpected error occurred while mounting the %1$(productName)@ volume.\n\nPlease make sure you are using the latest version of %1$(productName)@.\n\nIn case the issue persists, refer to the Troubleshooting Guide."
+          }
+        }
+      }
+    },
+    "unexpectedError.troubleshooting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Troubleshooting Guide öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Troubleshooting Guide"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.2"
+}

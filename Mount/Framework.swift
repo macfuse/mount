@@ -66,17 +66,13 @@ public func mount(
         } catch .installingFailed(.status(_)) {
             if !quiet {
                 let options = Alert.display(
-                    header: "Install Helper Tools",
-                    message:
-                        """
-                        Install the helper tools required to mount \(Variant.productName) volumes. \
-                        Enter an administrator name and password to continue.
-
-                        After installing the helper tools, the volume will be mounted automatically.
-                        """,
-                    defaultButtonTitle: "Install Helper Tools",
-                    alternateButtonTitle: "Open Getting Started",
-                    otherButtonTitle: "Cancel"
+                    header: String(localized: .installHelperToolsHeader),
+                    message: String(
+                        localized: .installHelperToolsMessage(productName: Variant.productName)
+                    ),
+                    defaultButtonTitle: String(localized: .installHelperToolsInstall),
+                    alternateButtonTitle: String(localized: .installHelperToolsGettingStarted),
+                    otherButtonTitle: String(localized: .installHelperToolsCancel)
                 )
 
                 switch options {
@@ -124,18 +120,17 @@ public func mount(
         } catch .mountingFailed(.fileSystemExtensionNotFound) {
             if !quiet {
                 let options = Alert.display(
-                    header: "Register File System Extensions",
-                    message:
-                        """
-                        Register the file system extensions required to mount \
-                        \(Variant.productName) volumes.
-
-                        After registering the file system extensions, restart your Mac. Then try \
-                        mounting the volume again.
-                        """,
-                    defaultButtonTitle: "Register File System Extensions",
-                    alternateButtonTitle: "Open Getting Started",
-                    otherButtonTitle: "Cancel"
+                    header: String(localized: .registerFileSystemExtensionHeader),
+                    message: String(
+                        localized: .registerFileSystemExtensionMessage(
+                            productName: Variant.productName
+                        )
+                    ),
+                    defaultButtonTitle: String(localized: .registerFileSystemExtensionRegister),
+                    alternateButtonTitle: String(
+                        localized: .registerFileSystemExtensionGettingStarted
+                    ),
+                    otherButtonTitle: String(localized: .registerFileSystemExtensionCancel)
                 )
 
                 switch options {
@@ -153,22 +148,19 @@ public func mount(
         } catch .mountingFailed(.fileSystemExtensionRequiresApproval) {
             if !quiet {
                 let options = Alert.display(
-                    header: "Enable File System Extensions",
-                    message:
-                        """
-                        Enable the file system extensions required to mount \(Variant.productName) \
-                        volumes.
-
-                        Open System Settings › General › Login Items & Extensions. Under \
-                        Extensions, click By Category. Then click the info button next to File \
-                        System Extensions and enable the \(Variant.productName) file system \
-                        extensions.
-
-                        After enabling the file system extensions, try mounting the volume again.
-                        """,
-                    defaultButtonTitle: "Open System Settings",
-                    alternateButtonTitle: "Open Getting Started",
-                    otherButtonTitle: "Cancel"
+                    header: String(localized: .enableFileSystemExtensionHeader),
+                    message: String(
+                        localized: .enableFileSystemExtensionMessage(
+                            productName: Variant.productName
+                        )
+                    ),
+                    defaultButtonTitle: String(
+                        localized: .enableFileSystemExtensionSystemSettings
+                    ),
+                    alternateButtonTitle: String(
+                        localized: .enableFileSystemExtensionGettingStarted
+                    ),
+                    otherButtonTitle: String(localized: .enableFileSystemExtensionCancel)
                 )
 
                 switch options {
@@ -222,16 +214,12 @@ public func mount(
 
         if !quiet {
             let options = Alert.display(
-                header: "Unexpected Error",
-                message:
-                """
-                An unexpected error occurred while mounting the \(Variant.productName) volume.
-
-                Please make sure you are using the latest version of \(Variant.productName). In \
-                case the issue persists, refer to the Troubleshooting guide.
-                """,
-                defaultButtonTitle: "Open Troubleshooting",
-                alternateButtonTitle: "Cancel"
+                header: String(localized: .unexpectedErrorHeader),
+                message: String(
+                    localized: .unexpectedErrorMessage(productName: Variant.productName)
+                ),
+                defaultButtonTitle: String(localized: .unexpectedErrorTroubleshooting),
+                alternateButtonTitle: String(localized: .unexpectedErrorCancel)
             )
 
             switch options {

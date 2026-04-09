@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		430B6B092F8397A000F328AD /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430B6B082F83979C00F328AD /* Bundle.swift */; };
 		430B6B0D2F8504DF00F328AD /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430B6B0C2F8503B100F328AD /* Alert.swift */; };
+		438DDD512F87498A004CF4E0 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 438DDD502F87498A004CF4E0 /* Localizable.xcstrings */; };
 		439FC1DC2F7AA3F500DF76D0 /* Mounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FC1D92F7AA3F500DF76D0 /* Mounter.swift */; };
 		439FC1DE2F7AA66100DF76D0 /* MFMount.h in Headers */ = {isa = PBXBuildFile; fileRef = 439FC1DD2F7AA65300DF76D0 /* MFMount.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		439FC1F12F7C8CEC00DF76D0 /* Variant.swift.preprocess in Sources */ = {isa = PBXBuildFile; fileRef = 439FC1F02F7C8CE900DF76D0 /* Variant.swift.preprocess */; };
@@ -39,6 +40,7 @@
 		430B6B0C2F8503B100F328AD /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		438577EA2F4DD01600EA4DB0 /* MFFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MFFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		438577EC2F4DD01900EA4DB0 /* MFXPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MFXPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		438DDD502F87498A004CF4E0 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		439FC1CE2F7AA3E100DF76D0 /* MFMount.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MFMount.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		439FC1D92F7AA3F500DF76D0 /* Mounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mounter.swift; sourceTree = "<group>"; };
 		439FC1DD2F7AA65300DF76D0 /* MFMount.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFMount.h; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				439FC1F72F7EBF9F00DF76D0 /* Framework.swift */,
 				439FC1D92F7AA3F500DF76D0 /* Mounter.swift */,
 				439FC1F92F7EC26700DF76D0 /* Parameters.swift */,
+				438DDD502F87498A004CF4E0 /* Localizable.xcstrings */,
 			);
 			path = Mount;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 438577D42F4DCFD600EA4DB0;
 			minimizedProjectReferenceProxies = 1;
@@ -206,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				438DDD512F87498A004CF4E0 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +301,7 @@
 				SDKROOT = macosx;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 x86_64";
 			};
@@ -363,6 +369,7 @@
 				SDKROOT = macosx;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Release;
