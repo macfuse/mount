@@ -15,23 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43F679BD2C400EBE00CD49BA"
-               BuildableName = "macfuse.app"
-               BlueprintName = "App"
-               ReferencedContainer = "container:../../Work.localized/macFUSE/Repositories/macfuse/FSModule/macfuse.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "439FC1CD2F7AA3E100DF76D0"
-               BuildableName = "MFMount.framework"
-               BlueprintName = "Mount"
+               BlueprintIdentifier = "438F79AC2FA8F1F70045FFF8"
+               BuildableName = "Mount (clean)"
+               BlueprintName = "Mount (clean)"
                ReferencedContainer = "container:Mount.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -65,9 +51,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "439FC1CD2F7AA3E100DF76D0"
-            BuildableName = "MFMount.framework"
-            BlueprintName = "Mount"
+            BlueprintIdentifier = "438F79AC2FA8F1F70045FFF8"
+            BuildableName = "Mount (clean)"
+            BlueprintName = "Mount (clean)"
             ReferencedContainer = "container:Mount.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

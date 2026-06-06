@@ -8,14 +8,26 @@
 //  This framework can be distributed under the terms of the GNU LGPL. See the file LICENSE.txt.
 //
 
-internal enum Variant {
-    internal static let identifier = "$(FUSE_BUNDLE_IDENTIFIER_PREFIX)"
+/// Build-time variant values used by the mount framework.
+///
+/// The build system replaces the placeholders in this file while generating the Swift source used
+/// by the target.
+enum Variant {
+    /// The bundle identifier prefix.
+    static let identifier = "$(FUSE_BUNDLE_IDENTIFIER_PREFIX)"
 
-    internal static let name = "$(FUSE_NAME)"
-    internal static let displayName = "$(FUSE_DISPLAY_NAME)"
-    internal static let productName = "$(FUSE_PRODUCT_NAME)"
+    /// The short file system name.
+    static let name = "$(FUSE_NAME)"
 
-    internal static let developmentTeam = "$(DEVELOPMENT_TEAM)"
+    /// The user-facing file system name.
+    static let displayName = "$(FUSE_DISPLAY_NAME)"
 
-    internal static let mountMachService = "$(FUSE_MOUNT_MACHSERVICE)"
+    /// The full user-facing product name.
+    static let productName = "$(FUSE_PRODUCT_NAME)"
+
+    /// The Apple Developer Team identifier used for code-signing checks.
+    static let developmentTeam = "$(DEVELOPMENT_TEAM)"
+
+    /// The Mach service name of the mount service.
+    static let mountMachServiceName = "$(FUSE_MOUNT_MACHSERVICE)"
 }

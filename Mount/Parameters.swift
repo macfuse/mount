@@ -10,13 +10,19 @@
 
 import Foundation
 
-internal enum Parameters {
+/// Shared parameters used by mount setup and troubleshooting flows.
+enum Parameters {
+    /// The System Settings URL for the extension approval pane.
     static let extensionsSystemSettingsURL = URL(
         string: "x-apple.systempreferences:com.apple.LoginItems-Settings.extension?ExtensionItems"
     )!
+
+    /// The Getting Started guide URL.
     static let gettingStartedURL = URL(
         string: "https://github.com/macfuse/macfuse/wiki/Getting-Started"
     )!
+
+    /// The Troubleshooting guide URL.
     static let troubleshootingURL = URL(
         string: "https://github.com/macfuse/macfuse/wiki/Troubleshooting"
     )!

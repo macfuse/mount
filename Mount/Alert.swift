@@ -11,9 +11,19 @@
 import CoreFoundation
 import Foundation
 
-internal enum Alert {
+/// Displays user-facing alerts for mount setup and recovery workflows.
+enum Alert {
+    /// Displays a caution alert and returns the selected response.
+    ///
+    /// - Parameters:
+    ///   - header: The alert title.
+    ///   - message: The alert message.
+    ///   - defaultButtonTitle: The title of the default button.
+    ///   - alternateButtonTitle: The title of the alternate button, or `nil` to omit it.
+    ///   - otherButtonTitle: The title of the other button, or `nil` to omit it.
+    /// - Returns: The response flags from `CFUserNotificationDisplayAlert`.
     @discardableResult
-    internal static func display(
+    static func display(
         header: String,
         message: String,
         defaultButtonTitle: String,

@@ -11,7 +11,8 @@
 import OSLog
 
 extension Logger {
-    internal static let mount = Logger(
+    /// The logger used by the mount framework.
+    static let mount = Logger(
         subsystem: Variant.identifier,
         category: "mount"
     )
