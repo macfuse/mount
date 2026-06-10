@@ -34,7 +34,7 @@ extension Channel {
 /// This function has no defined `errno` failure values.
 ///
 /// - Returns: A newly created channel, or `nil` if the channel could not be created.
-@c(MFChannelCreate)
+@c @implementation
 public func MFChannelCreate() -> MFChannelRef? {
     let channel = Channel()
     return Unmanaged.passRetained(channel).toOpaque()
@@ -55,7 +55,7 @@ public func MFChannelCreate() -> MFChannelRef? {
 ///
 /// - Parameter fileDescriptor: The device file descriptor to use.
 /// - Returns: A newly created channel, or `nil` if the channel could not be created.
-@c(MFChannelCreateWithDeviceFileDescriptor)
+@c @implementation
 public func MFChannelCreateWithDeviceFileDescriptor(_ fileDescriptor: CInt) -> MFChannelRef? {
     Bridge.perform { () throws(Errno) in
         let fileDescriptor = FileDescriptor(rawValue: fileDescriptor)
@@ -83,11 +83,11 @@ public func MFChannelCreateWithDeviceFileDescriptor(_ fileDescriptor: CInt) -> M
 /// | `EINVAL` | `channel` is `nil` or does not identify a valid channel object. |
 /// | `ENOTSUP` | `channel` is not backed by a device file descriptor. |
 ///
-/// - Parameter channel: The channel whose file descriptor should be returned. May not be `nil`.
+/// - Parameter channel: The channel whose file descriptor should be returned.
 /// - Returns: The channel's file descriptor, or `-1` if the channel has no associated file
 ///   descriptor or an error occurs.
-@c(MFChannelGetFileDescriptor)
-public func MFChannelGetFileDescriptor(_ channel: MFChannelRef?) -> CInt {
+@c @implementation
+public func MFChannelGetFileDescriptor(_ channel: MFChannelRef) -> CInt {
     Bridge.perform { () throws(Errno) in
         guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {
             Bridge.log(level: .error, "Invalid argument channel")
@@ -132,21 +132,17 @@ extension Channel.Flags {
 /// The value stored in `flags` is undefined on failure.
 ///
 /// - Parameters:
-///   - channel: The channel whose flags should be returned. May not be `nil`.
-///   - flags: On return, contains the current channel flags. May not be `nil`.
+///   - channel: The channel whose flags should be returned.
+///   - flags: On return, contains the current channel flags.
 /// - Returns: `true` if the flags were returned successfully; otherwise `false`.
-@c(MFChannelGetFlags)
+@c @implementation
 public func MFChannelGetFlags(
-    _ channel: MFChannelRef?,
-    _ flags: UnsafeMutablePointer<MFChannelFlags>?
+    _ channel: MFChannelRef,
+    _ flags: UnsafeMutablePointer<MFChannelFlags>
 ) -> Bool {
     Bridge.perform { () throws(Errno) in
         guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {
             Bridge.log(level: .error, "Invalid argument channel")
-            throw .invalidArgument
-        }
-        guard let flags else {
-            Bridge.log(level: .error, "Invalid argument flags")
             throw .invalidArgument
         }
 
@@ -172,11 +168,11 @@ public func MFChannelGetFlags(
 /// `fcntl(2)` using `F_GETFL` or `F_SETFL`.
 ///
 /// - Parameters:
-///   - channel: The channel whose flags should be changed. May not be `nil`.
+///   - channel: The channel whose flags should be changed.
 ///   - flags: A bit mask composed of `MFChannelFlag` values.
 /// - Returns: `true` if the flags were set successfully; otherwise `false`.
-@c(MFChannelSetFlags)
-public func MFChannelSetFlags(_ channel: MFChannelRef?, _ flags: MFChannelFlags) -> Bool {
+@c @implementation
+public func MFChannelSetFlags(_ channel: MFChannelRef, _ flags: MFChannelFlags) -> Bool {
     Bridge.perform { () throws(Errno) in
         guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {
             Bridge.log(level: .error, "Invalid argument channel")
@@ -207,13 +203,13 @@ public func MFChannelSetFlags(_ channel: MFChannelRef?, _ flags: MFChannelFlags)
 /// `poll(2)`.
 ///
 /// - Parameters:
-///   - channel: The channel to wait on. May not be `nil`.
+///   - channel: The channel to wait on.
 ///   - timeout: The timeout value, in milliseconds. Pass `0` to poll without blocking. Pass a
 ///     negative value to wait indefinitely.
 /// - Returns: A positive value if a complete message is available, `0` if the operation timed out,
 ///   or `-1` if an error occurs.
-@c(MFChannelWaitForNextMessage)
-public func MFChannelWaitForNextMessage(_ channel: MFChannelRef?, _ timeout: Int32) -> Int32 {
+@c @implementation
+public func MFChannelWaitForNextMessage(_ channel: MFChannelRef, _ timeout: Int32) -> Int32 {
     Bridge.perform { () throws(Errno) in
         guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {
             Bridge.log(level: .error, "Invalid argument channel")
@@ -258,10 +254,10 @@ public func MFChannelWaitForNextMessage(_ channel: MFChannelRef?, _ timeout: Int
 /// For a device-backed channel, this function may also fail with an `errno` value returned by
 /// `read(2)`.
 ///
-/// - Parameter channel: The channel from which to receive the next FUSE message. May not be `nil`.
+/// - Parameter channel: The channel from which to receive the next FUSE message.
 /// - Returns: A retained message reference, or `nil` if an error occurs.
-@c(MFChannelCopyNextMessage)
-public func MFChannelCopyNextMessage(_ channel: MFChannelRef?) -> MFMessageRef? {
+@c @implementation
+public func MFChannelCopyNextMessage(_ channel: MFChannelRef) -> MFMessageRef? {
     Bridge.perform { () throws(Errno) in
         guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {
             Bridge.log(level: .error, "Invalid argument channel")
@@ -300,23 +296,19 @@ public func MFChannelCopyNextMessage(_ channel: MFChannelRef?) -> MFMessageRef? 
 /// `writev(2)`.
 ///
 /// - Parameters:
-///   - channel: The channel on which to send the message. May not be `nil`.
-///   - buffers: An array of `iovec` values describing the body buffers. May not be `nil`.
+///   - channel: The channel on which to send the message.
+///   - buffers: An array of `iovec` values describing the body buffers.
 ///   - count: The number of buffers. Must be greater than `0`.
 /// - Returns: The number of bytes sent, or `-1` if an error occurs.
-@c(MFChannelSendMessage)
+@c @implementation
 public func MFChannelSendMessage(
-    _ channel: MFChannelRef?,
-    _ buffers: UnsafePointer<iovec>?,
+    _ channel: MFChannelRef,
+    _ buffers: UnsafePointer<iovec>,
     _ count: size_t
 ) -> ssize_t {
     Bridge.perform { () throws(Errno) in
         guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {
             Bridge.log(level: .error, "Invalid argument channel")
-            throw .invalidArgument
-        }
-        guard let buffers else {
-            Bridge.log(level: .error, "Invalid argument buffers")
             throw .invalidArgument
         }
         guard count > 0 else {
@@ -348,10 +340,10 @@ public func MFChannelSendMessage(
 /// For a device-backed channel, this function may also fail with an `errno` value returned by
 /// `close(2)`.
 ///
-/// - Parameter channel: The channel to close. May not be `nil`.
+/// - Parameter channel: The channel to close.
 /// - Returns: `true` if the channel was closed successfully; otherwise `false`.
-@c(MFChannelClose)
-public func MFChannelClose(_ channel: MFChannelRef?) -> Bool {
+@c @implementation
+public func MFChannelClose(_ channel: MFChannelRef) -> Bool {
     Bridge.perform { () throws(Errno) in
         guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {
             Bridge.log(level: .error, "Invalid argument channel")

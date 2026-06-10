@@ -70,7 +70,7 @@ final class MFMessage: ManagedBuffer<any Message, iovec> {
 ///
 /// - Parameter message: The message whose body size should be returned. May not be `nil`.
 /// - Returns: The message body size in bytes, or `-1` if an error occurs.
-@c(MFMessageGetBodySize)
+@c @implementation
 public func MFMessageGetBodySize(_ message: MFMessageRef!) -> ssize_t {
     Bridge.perform { () throws(Errno) in
         guard let message = Bridge.unwrap(reference: message, as: MFMessage.self) else {
@@ -110,27 +110,22 @@ public func MFMessageGetBodySize(_ message: MFMessageRef!) -> ssize_t {
 /// | `EINVAL` | `message` is `nil`, `message` does not identify a valid message object, or `buffers` is `nil`. |
 ///
 /// - Parameters:
-///   - message: The message whose body buffers should be returned. May not be `nil`.
-///   - buffers: On return, points to the first `iovec` value in the borrowed buffer array. May not be
-///     `nil`.
+///   - message: The message whose body buffers should be returned.
+///   - buffers: On return, points to the first `iovec` value in the borrowed buffer array.
 /// - Returns: The number of buffers in the message body, or `-1` if an error occurs.
-@c(MFMessageGetBodyBuffers)
+@c @implementation
 public func MFMessageGetBodyBuffers(
-    _ message: MFMessageRef!,
-    _ buffers: UnsafeMutablePointer<UnsafePointer<iovec>?>?
+    _ message: MFMessageRef,
+    _ buffers: UnsafeMutablePointer<UnsafePointer<iovec>>
 ) -> ssize_t {
     Bridge.perform { () throws(Errno) in
         guard let message = Bridge.unwrap(reference: message, as: MFMessage.self) else {
             Bridge.log(level: .error, "Invalid argument message")
             throw .invalidArgument
         }
-        guard let buffers else {
-            Bridge.log(level: .error, "Invalid argument buffers")
-            throw .invalidArgument
-        }
 
         let bodyBuffers = message.bodyBuffers
-        buffers.pointee = bodyBuffers.baseAddress
+        buffers.pointee = bodyBuffers.baseAddress!
         return bodyBuffers.count
     }
 }
@@ -153,28 +148,24 @@ public func MFMessageGetBodyBuffers(
 /// | `EINVAL` | `message` is `nil`, `message` does not identify a valid message object, or `buffer` is `nil`. |
 ///
 /// - Parameters:
-///   - message: The message whose reply buffer should be returned. May not be `nil`.
+///   - message: The message whose reply buffer should be returned.
 ///   - buffer: On return, points to the borrowed reply buffer, or `nil` if the message does not have
-///     a reply buffer. May not be `nil`.
+///     a reply buffer.
 /// - Returns: The size of the reply buffer in bytes, `0` if the message does not have a reply buffer,
 ///   or `-1` if an error occurs.
-@c(MFMessageGetReplyBuffer)
+@c @implementation
 public func MFMessageGetReplyBuffer(
-    _ message: MFMessageRef!,
-    _ buffer: UnsafeMutablePointer<UnsafeMutableRawPointer?>?
+    _ message: MFMessageRef,
+    _ buffer: UnsafeMutablePointer<UnsafeMutableRawPointer?>
 ) -> ssize_t {
     Bridge.perform { () throws(Errno) in
         guard let message = Bridge.unwrap(reference: message, as: MFMessage.self) else {
             Bridge.log(level: .error, "Invalid argument message")
             throw .invalidArgument
         }
-        guard let buffer else {
-            Bridge.log(level: .error, "Invalid argument buffer")
-            throw .invalidArgument
-        }
 
         if let replyBuffer = message.header.replyBuffer {
-            buffer.pointee = replyBuffer.baseAddress
+            buffer.pointee = replyBuffer.baseAddress!
             return replyBuffer.count
         } else {
             buffer.pointee = nil

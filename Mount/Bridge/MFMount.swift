@@ -42,7 +42,7 @@ extension MFMountResult: Bridge.PerformReturnValue {
 ///   - quiet: A Boolean value that suppresses user-facing recovery dialogs when set to `true`.
 /// - Returns: A result value indicating whether the volume was mounted successfully or why the
 ///   mount operation failed.
-@c(MFMount)
+@c @implementation
 public func MFMount(
     _ channel: MFChannelRef!,
     _ mountPoint: UnsafePointer<CChar>!,

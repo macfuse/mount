@@ -532,7 +532,7 @@ MFMessageRef _Nullable MFChannelCopyNextMessage(MFChannelRef _Nonnull channel);
  */
 ssize_t MFChannelSendMessage(
     MFChannelRef _Nonnull channel,
-    const struct iovec * _Nonnull buffers,
+    const struct iovec * _Nonnull __counted_by(count) buffers,
     size_t count
 );
 

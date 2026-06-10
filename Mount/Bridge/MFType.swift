@@ -15,18 +15,10 @@ import OSLog
 /// The returned reference must be balanced with a corresponding call to
 /// ``MFRelease(_:)-(MFTypeRef?)``.
 ///
-/// Passing `nil` is a programming error and causes a runtime trap, matching the non-null contract
-/// in `MFMount.h`.
-///
 /// - Parameter reference: The object to retain.
 /// - Returns: The retained object reference.
-@c(MFRetain)
-public func MFRetain(_ reference: MFTypeRef?) -> MFTypeRef? {
-    guard let reference else {
-        Bridge.log(level: .error, "Invalid argument reference")
-        fatalError()
-    }
-
+@c @implementation
+public func MFRetain(_ reference: MFTypeRef) -> MFTypeRef {
     _ = Unmanaged<AnyObject>.fromOpaque(reference).retain()
     return reference
 }
@@ -36,16 +28,8 @@ public func MFRetain(_ reference: MFTypeRef?) -> MFTypeRef? {
 /// Releases a reference previously returned by a Create, Copy, or Retain function. After the final
 /// release, the object is destroyed.
 ///
-/// Passing `nil` is a programming error and causes a runtime trap, matching the non-null contract
-/// in `MFMount.h`.
-///
 /// - Parameter reference: The object to release.
-@c(MFRelease)
-public func MFRelease(_ reference: MFTypeRef?) {
-    guard let reference else {
-        Bridge.log(level: .error, "Invalid argument reference")
-        fatalError()
-    }
-
+@c @implementation
+public func MFRelease(_ reference: MFTypeRef) {
     Unmanaged<AnyObject>.fromOpaque(reference).release()
 }
