@@ -40,10 +40,6 @@ extension Channel.Flags {
 
 /// A channel transport backed by a FUSE device file descriptor.
 class DeviceTransport: Channel.Transport, Channel.FileDescriptorRepresentable {
-    /// The incoming message buffers’ byte count, consisting of 4 KiB for headers and 32 MiB for
-    /// unstructured message data.
-    private static let messageBufferByteCount = 0x2001000
-
     /// The alignment for incoming message body buffer, matching the system page size.
     ///
     /// Page alignment keeps buffers suitable for device I/O and avoids unnecessary misalignment when
@@ -145,7 +141,7 @@ class DeviceTransport: Channel.Transport, Channel.FileDescriptorRepresentable {
     ///   `Errno.operationNotSupportedByDevice` if the device reaches end-of-file.
     func nextMessage() throws(Errno) -> Message {
         let buffer = UnsafeMutableRawBufferPointer.allocate(
-            byteCount: Self.messageBufferByteCount,
+            byteCount: Parameters.deviceMessageBufferByteCount,
             alignment: Self.messageBufferAlignment
         )
 
