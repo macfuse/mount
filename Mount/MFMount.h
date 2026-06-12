@@ -51,6 +51,10 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 
+#ifndef MF_WEAK_IMPORT
+#define MF_WEAK_IMPORT __attribute__((weak_import))
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -298,11 +302,12 @@ MFChannelRef _Nullable MFChannelCreate(void);
  * If this function fails, ownership of fileDescriptor remains with the caller.
  *
  * Note: This function will be removed once MFMount() supports mounting volumes
- * using the kernel backend.
+ * using the kernel backend. Check whether the symbol exists before calling this
+ * function.
  */
 MFChannelRef _Nullable MFChannelCreateWithDeviceFileDescriptor(
     int fileDescriptor
-);
+) MF_WEAK_IMPORT;
 
 /*!
  * @function MFChannelGetFileDescriptor
