@@ -95,8 +95,6 @@
 		436BFC182F8AECA200D314FF /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		436BFC1C2F8F676000D314FF /* Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Protocol.h; sourceTree = "<group>"; };
 		436BFC1E2F8F680E00D314FF /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		438577EA2F4DD01600EA4DB0 /* MFFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MFFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		438577EC2F4DD01900EA4DB0 /* MFXPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MFXPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		438DDD502F87498A004CF4E0 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		438F798D2F9CF6AC0045FFF8 /* DeviceTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTransport.swift; sourceTree = "<group>"; };
 		438F79A92FA6ADA20045FFF8 /* XPCTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPCTransport.swift; sourceTree = "<group>"; };
@@ -206,8 +204,6 @@
 		438577E92F4DD01600EA4DB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				438577EA2F4DD01600EA4DB0 /* MFFoundation.framework */,
-				438577EC2F4DD01900EA4DB0 /* MFXPC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -580,6 +576,7 @@
 		439FC1D42F7AA3E100DF76D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
@@ -620,6 +617,7 @@
 		439FC1D52F7AA3E100DF76D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
@@ -694,7 +692,7 @@
 			repositoryURL = "https://github.com/apple/swift-collections.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
+				minimumVersion = 1.6.0;
 			};
 		};
 		438F79882F9CF5EA0045FFF8 /* XCRemoteSwiftPackageReference "swift-atomics" */ = {
