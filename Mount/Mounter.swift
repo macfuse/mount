@@ -157,17 +157,28 @@ enum Mounter {
     /// - Throws: ``Error/settingPeerCodeSigningRequirementFailed`` if the peer code-signing
     ///   requirement cannot be configured.
     private static func connect() throws(Error) -> xpc_connection_t {
-        let connection = xpc_connection_create_mach_service(Variant.mountMachServiceName, nil, 0)
+        let connection = xpc_connection_create_mach_service(
+            Variant.mountMachServiceName,
+            nil,
+            UInt64(XPC_CONNECTION_MACH_SERVICE_PRIVILEGED)
+        )
 
-        guard xpc_connection_set_peer_code_signing_requirement(
-            connection,
-            """
-            anchor apple generic and \
-            certificate leaf[subject.OU] = "\(Variant.developmentTeam)"
-            """
-        ) == 0 else {
-            Logger.mount.error("Failed to set peer code signing requirement")
-            throw .settingPeerCodeSigningRequirementFailed
+        if #available(macOS 14.4, *) {
+            /*
+             * Note: Do not use xpc_connection_set_peer_code_signing_requirement() to specify
+             * code-signing requirements for the mount service. After the process forks, incoming
+             * messages are rejected even though they satisfy the requirements.
+             */
+
+            let requirement = xpc_dictionary_create_empty()
+            xpc_dictionary_set_string(requirement, "team-identifier", Variant.developmentTeam)
+
+            guard xpc_connection_set_peer_lightweight_code_requirement(
+                connection,
+                requirement
+            ) == 0 else {
+                throw .settingPeerCodeSigningRequirementFailed
+            }
         }
 
         xpc_connection_set_event_handler(connection) { _ in }

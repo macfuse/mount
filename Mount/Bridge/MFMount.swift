@@ -145,7 +145,8 @@ public func MFMount(
             } catch .unpackingReplyFailed {
                 /*
                  * This is an unexpected error, most likely caused by a version mismatch between the
-                 * mount service and this framework.
+                 * mount service and this framework. The mount operation might have succeeeded
+                 * despite the error.
                  */
 
                 Bridge.log(level: .error, "Failed to unpack reply from mount service")
@@ -269,6 +270,7 @@ public func MFMount(
                 }
             }
 
+            try? channel.close()
             throw .resourceTemporarilyUnavailable
         }
 
