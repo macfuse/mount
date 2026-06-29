@@ -196,30 +196,26 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
             .distantFuture
         }
 
-        do {
-            return try condition.withLock { () throws(Errno) in
-                let interruptGeneration = state.interruptGeneration
+        condition.lock()
+        defer {
+            condition.unlock()
+        }
 
-                while true {
-                    if state.received.first != nil {
-                        return true
-                    }
-                    guard !state.isInvalid else {
-                        throw .operationNotSupportedByDevice
-                    }
-                    guard state.interruptGeneration == interruptGeneration else {
-                        throw .interrupted
-                    }
-                    guard let date, condition.wait(until: date) else {
-                        return false
-                    }
-                }
+        let interruptGeneration = state.interruptGeneration
+
+        while true {
+            if state.received.first != nil {
+                return true
             }
-        } catch let error as Errno {
-            throw error
-        } catch {
-            // We made sure we will never get here
-            fatalError()
+            guard !state.isInvalid else {
+                throw .operationNotSupportedByDevice
+            }
+            guard state.interruptGeneration == interruptGeneration else {
+                throw .interrupted
+            }
+            guard let date, condition.wait(until: date) else {
+                return false
+            }
         }
     }
 
@@ -230,35 +226,31 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
     ///   is available, `Errno.interrupted` if the receive operation is interrupted, or
     ///   `Errno.operationNotSupportedByDevice` if the peer connection is no longer available.
     func nextMessage() throws(Errno) -> Message {
-        do {
-            return try condition.withLock { () throws(Errno) in
-                let isNonBlocking = state.flags.contains(.nonBlocking)
-                let interruptGeneration = state.interruptGeneration
+        condition.lock()
+        defer {
+            condition.unlock()
+        }
 
-                while true {
-                    guard let message = state.received.popFirst() else {
-                        guard !state.isInvalid else {
-                            throw .operationNotSupportedByDevice
-                        }
-                        guard !isNonBlocking else {
-                            throw .wouldBlock
-                        }
-                        guard state.interruptGeneration == interruptGeneration else {
-                            throw .interrupted
-                        }
+        let isNonBlocking = state.flags.contains(.nonBlocking)
+        let interruptGeneration = state.interruptGeneration
 
-                        condition.wait()
-                        continue
-                    }
-
-                    return message
+        while true {
+            guard let message = state.received.popFirst() else {
+                guard !state.isInvalid else {
+                    throw .operationNotSupportedByDevice
                 }
+                guard !isNonBlocking else {
+                    throw .wouldBlock
+                }
+                guard state.interruptGeneration == interruptGeneration else {
+                    throw .interrupted
+                }
+
+                condition.wait()
+                continue
             }
-        } catch let error as Errno {
-            throw error
-        } catch {
-            // We made sure we will never get here
-            fatalError()
+
+            return message
         }
     }
 
