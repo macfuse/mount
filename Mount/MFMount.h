@@ -424,6 +424,39 @@ bool MFChannelGetFlags(
 bool MFChannelSetFlags(MFChannelRef _Nonnull channel, MFChannelFlags flags);
 
 /*!
+ * @function MFChannelInterrupt
+ *
+ * @abstract
+ * Interrupts receive-side operations blocked on a channel.
+ *
+ * @param channel
+ * The channel whose blocked receive operations should be interrupted. May not
+ * be NULL.
+ *
+ * @result
+ * true if the interrupt request was delivered successfully; otherwise false.
+ *
+ * @discussion
+ * This function requests that the channel wake operations currently blocked in
+ * MFChannelWaitForNextMessage() or MFChannelCopyNextMessage(). A blocked
+ * operation that observes the interrupt fails with errno set to EINTR.
+ *
+ * Interrupting a channel does not close it, invalidate its transport, discard
+ * queued messages, or prevent later receive operations from blocking again. If
+ * no receive operation is blocked when the interrupt is delivered, the
+ * interrupt may have no observable effect.
+ *
+ * On failure, this function returns false and sets errno as follows:
+ *
+ * | Value | Description |
+ * | --- | --- |
+ * | EINVAL | channel is NULL or does not identify a valid channel object. |
+ * | ENODEV | channel is closed. |
+ * | ENOTSUP | The channel transport does not support explicit interruption. |
+ */
+bool MFChannelInterrupt(MFChannelRef _Nonnull channel);
+
+/*!
  * @function MFChannelWaitForNextMessage
  *
  * @abstract

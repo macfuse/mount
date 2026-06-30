@@ -50,6 +50,15 @@ final class Channel: @unchecked Sendable {
         /// - Throws: An `Errno` value if the flags cannot be set.
         func setFlags(_ flags: Flags) throws(Errno)
 
+        /// Interrupts receive-side operations blocked on the transport.
+        ///
+        /// An interrupted wait or receive operation should fail with `Errno.interrupted`.
+        /// If no receive operation is blocked, the interrupt may have no observable effect.
+        ///
+        /// - Throws: `Errno.notSupported` if the transport cannot be explicitly interrupted, or
+        ///   another transport-defined `Errno` value if the interrupt cannot be delivered.
+        func interrupt() throws(Errno)
+
         /// Waits until the next complete message is available or the deadline expires.
         ///
         /// - Parameter deadline: The deadline that bounds how long the call may wait.
@@ -77,10 +86,36 @@ final class Channel: @unchecked Sendable {
         var fileDescriptor: FileDescriptor { get }
     }
 
+    /// POSIX signals that should wake blocked receive operations
+    private static let interruptSignals = [SIGHUP, SIGINT, SIGPIPE, SIGTERM]
+
+    private let signalSources: [DispatchSourceSignal]
+
     @BlockingLazy private var transport: (any Transport)?
 
     /// Creates an unopened channel.
-    init() { }
+    init() {
+        signalSources = Self.interruptSignals.map {
+            DispatchSource.makeSignalSource(signal: $0)
+        }
+    }
+
+    /// Resumes all signal sources used to interrupt blocked receive operations.
+    private func resumeSignalSources() {
+        for signalSource in signalSources {
+            signalSource.setEventHandler { [weak self] in
+                try? self?.interrupt()
+            }
+            signalSource.resume()
+        }
+    }
+
+    /// Stops all signal sources used to interrupt blocked receive operations.
+    private func cancelSignalSources() {
+        for signalSource in signalSources {
+            signalSource.cancel()
+        }
+    }
 
     /// Opens the channel with a transport.
     ///
@@ -92,6 +127,7 @@ final class Channel: @unchecked Sendable {
     func open(with transport: Transport) throws(Errno) {
         if $transport.resolve(transport) {
             try transport.activate()
+            resumeSignalSources()
         }
     }
 
@@ -102,6 +138,8 @@ final class Channel: @unchecked Sendable {
     ///
     /// - Throws: An `Errno` value if deactivating the transport fails.
     func close() throws(Errno) {
+        cancelSignalSources()
+
         $transport.resolve(nil)
         try $transport.value??.deactivate()
     }
@@ -127,7 +165,7 @@ final class Channel: @unchecked Sendable {
     ///
     /// - Throws: `Errno.operationNotSupportedByDevice` if the channel is closed, or another
     ///   transport-defined `Errno` value if the flags cannot be returned.
-    public func getFlags() throws(Errno) -> Flags {
+    func getFlags() throws(Errno) -> Flags {
         guard let transport = $transport.wait() else {
             throw .operationNotSupportedByDevice
         }
@@ -139,11 +177,32 @@ final class Channel: @unchecked Sendable {
     /// - Parameter flags: The new channel flags.
     /// - Throws: `Errno.operationNotSupportedByDevice` if the channel is closed, or another
     ///   transport-defined `Errno` value if the flags cannot be set.
-    public func setFlags(_ flags: Flags) throws(Errno) {
+    func setFlags(_ flags: Flags) throws(Errno) {
         guard let transport = $transport.wait() else {
             throw .operationNotSupportedByDevice
         }
         try transport.setFlags(flags)
+    }
+
+    /// Interrupts receive-side operations blocked on the channel.
+    ///
+    /// Blocked calls to ``waitForNextMessage(until:)`` or ``nextMessage()`` that observe the
+    /// interrupt fail with `Errno.interrupted`. If no operation is blocked, the interrupt may have
+    /// no observable effect.
+    ///
+    /// - Throws: `Errno.operationNotSupportedByDevice` if the channel is closed,
+    ///   `Errno.notSupported` if the active transport cannot be explicitly interrupted, or another
+    ///   transport-defined `Errno` value if the interrupt cannot be delivered.
+    func interrupt() throws(Errno) {
+        $transport.interrupt()
+
+        guard case .some(let transport) = $transport.value else {
+            return
+        }
+        guard let transport else {
+            throw .operationNotSupportedByDevice
+        }
+        try transport.interrupt()
     }
 
     /// Waits until the next complete message is available or the deadline expires.
@@ -153,7 +212,7 @@ final class Channel: @unchecked Sendable {
     /// - Throws: `Errno.operationNotSupportedByDevice` if the channel is closed, or another
     ///   transport-defined `Errno` value if the wait fails.
     func waitForNextMessage(until deadline: Deadline = .immediate) throws(Errno) -> Bool {
-        let transport = $transport.wait(until: deadline)
+        let transport = try $transport.wait(until: deadline, interruptible: true)
         guard case .some(let transport) = transport else {
             return false
         }
@@ -170,7 +229,7 @@ final class Channel: @unchecked Sendable {
     /// - Throws: `Errno.operationNotSupportedByDevice` if the channel is closed, or another
     ///   transport-defined `Errno` value if the receive operation fails.
     func nextMessage() throws(Errno) -> any Message {
-        guard let transport = $transport.wait() else {
+        guard let transport = try $transport.wait(interruptible: true) else {
             throw .operationNotSupportedByDevice
         }
         return try transport.nextMessage()

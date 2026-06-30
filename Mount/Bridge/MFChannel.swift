@@ -184,6 +184,19 @@ public func MFChannelSetFlags(_ channel: MFChannelRef, _ flags: MFChannelFlags) 
     }
 }
 
+@c(_MFChannelInterrupt)
+public func MFChannelInterrupt(_ channel: MFChannelRef) -> Bool {
+    Bridge.perform { () throws(Errno) in
+        guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {
+            Bridge.log(level: .error, "Invalid argument channel")
+            throw .invalidArgument
+        }
+
+        try channel.interrupt()
+        return true
+    }
+}
+
 /// Waits until the next complete message is available.
 ///
 /// After this function reports success, the caller can call

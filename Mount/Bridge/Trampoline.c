@@ -88,6 +88,11 @@ bool MFChannelSetFlags(MFChannelRef channel, MFChannelFlags flags)
 	MFCancelSafe(_MFChannelSetFlags(channel, flags));
 }
 
+bool MFChannelInterrupt(MFChannelRef channel)
+{
+    MFCancelSafe(_MFChannelInterrupt(channel));
+}
+
 int32_t MFChannelWaitForNextMessage(MFChannelRef channel, int32_t timeout)
 {
 	MFCancelSafe(_MFChannelWaitForNextMessage(channel, timeout));

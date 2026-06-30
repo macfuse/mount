@@ -48,6 +48,7 @@
 		439FC1F12F7C8CEC00DF76D0 /* Variant.swift.preprocess in Sources */ = {isa = PBXBuildFile; fileRef = 439FC1F02F7C8CE900DF76D0 /* Variant.swift.preprocess */; };
 		439FC1F42F7C8EAB00DF76D0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FC1F32F7C8EA900DF76D0 /* Logger.swift */; };
 		439FC1FA2F7EC26B00DF76D0 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FC1F92F7EC26700DF76D0 /* Parameters.swift */; };
+		43A979672FF5650700EC9A52 /* UnsafePointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A979662FF5650200EC9A52 /* UnsafePointer.swift */; };
 		43CB253E2FC7A258001F517B /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CB253D2FC7A256001F517B /* Bridge.swift */; };
 		43CB25402FC8592C001F517B /* Deadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CB253F2FC85929001F517B /* Deadline.swift */; };
 		43D7A0622FF3B00000F00001 /* Trampoline.c in Sources */ = {isa = PBXBuildFile; fileRef = 43D7A0612FF3B00000F00001 /* Trampoline.c */; };
@@ -105,6 +106,7 @@
 		439FC1F02F7C8CE900DF76D0 /* Variant.swift.preprocess */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Variant.swift.preprocess; sourceTree = "<group>"; };
 		439FC1F32F7C8EA900DF76D0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		439FC1F92F7EC26700DF76D0 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		43A979662FF5650200EC9A52 /* UnsafePointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafePointer.swift; sourceTree = "<group>"; };
 		43CB253D2FC7A256001F517B /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		43CB253F2FC85929001F517B /* Deadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deadline.swift; sourceTree = "<group>"; };
 		43D7A0612FF3B00000F00001 /* Trampoline.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Trampoline.c; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				433BF3C82FC090B1003DF5AD /* Dispatch */,
 				430B6B0A2F8397A500F328AD /* Foundation */,
 				439FC1F62F7D494400DF76D0 /* OSLog */,
+				43A979652FF564FC00EC9A52 /* Swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -258,6 +261,14 @@
 				439FC1F32F7C8EA900DF76D0 /* Logger.swift */,
 			);
 			path = OSLog;
+			sourceTree = "<group>";
+		};
+		43A979652FF564FC00EC9A52 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				43A979662FF5650200EC9A52 /* UnsafePointer.swift */,
+			);
+			path = Swift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				430B6B092F8397A000F328AD /* Bundle.swift in Sources */,
+				43A979672FF5650700EC9A52 /* UnsafePointer.swift in Sources */,
 				43CB253E2FC7A258001F517B /* Bridge.swift in Sources */,
 				4316880B2FAA004000D61AF0 /* BlockingLazy.swift in Sources */,
 				433BF3B62FB3F67B003DF5AD /* XPCMessage.swift in Sources */,

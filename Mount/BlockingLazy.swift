@@ -10,6 +10,7 @@
 
 internal import Atomics
 import Foundation
+import System
 
 /// An interface for resolving and waiting on a ``BlockingLazy`` value.
 ///
@@ -26,11 +27,34 @@ public protocol BlockingLazyResolver<T> {
     /// - Returns: The resolved value.
     func wait() -> T
 
+    /// Waits until the value is resolved or, if requested, the wait is interrupted.
+    ///
+    /// - Parameter interruptible: A Boolean value that indicates whether ``interrupt()`` may abort
+    ///   this wait.
+    /// - Returns: The resolved value.
+    /// - Throws: `Errno.interrupted` if `interruptible` is `true` and the wait is interrupted
+    ///   before the value is resolved.
+    func wait(interruptible: Bool) throws(Errno) -> T
+
     /// Waits until the value is resolved or the deadline expires.
     ///
     /// - Parameter deadline: The deadline that bounds how long the call may wait.
     /// - Returns: The resolved value, or `nil` if the deadline expires before resolution.
     func wait(until deadline: Deadline) -> T?
+
+    /// Waits until the value is resolved, the deadline expires, or, if requested, the wait is
+    /// interrupted.
+    ///
+    /// - Parameter deadline: The deadline that bounds how long the call may wait.
+    /// - Parameter interruptible: A Boolean value that indicates whether ``interrupt()`` may abort
+    ///   this wait.
+    /// - Returns: The resolved value, or `nil` if the deadline expires before resolution.
+    /// - Throws: `Errno.interrupted` if `interruptible` is `true` and the wait is interrupted
+    ///   before the value is resolved.
+    func wait(until deadline: Deadline, interruptible: Bool) throws(Errno) -> T?
+
+    /// Interrupts currently blocked interruptible waits.
+    func interrupt()
 
     /// A Boolean value that indicates whether the value has been resolved.
     var isResolved: Bool { get }
@@ -61,39 +85,69 @@ public struct BlockingLazy<T>: BlockingLazyResolver<T> {
         }
     }
 
+    private class State {
+        let atomicBox: ManagedAtomicLazyReference<Box>
+        let condition: NSCondition
+        var interruptGeneration: UInt64
+
+        init() {
+            atomicBox = ManagedAtomicLazyReference()
+            condition = NSCondition()
+            interruptGeneration = 0
+        }
+    }
+
     /// The resolver interface exposed by the property wrapper projection.
     public typealias Resolver = BlockingLazyResolver
 
-    private let condition: NSCondition
-    private let atomicBox: ManagedAtomicLazyReference<Box>
+    /// Shared storage for the resolved value, wait condition, and interrupt generation.
+    private let state: State
 
     /// Creates an unresolved blocking lazy value.
     public init() {
-        condition = NSCondition()
-        atomicBox = ManagedAtomicLazyReference()
+        state = State()
     }
 
     /// The resolved value, if the value has already been resolved.
     public var value: T? {
-        return atomicBox.load()?.value
+        return state.atomicBox.load()?.value
     }
 
     /// Waits until the value is resolved.
     ///
     /// - Returns: The resolved value.
     public func wait() -> T {
-        if let box = atomicBox.load() {
+        try! wait(interruptible: false)
+    }
+
+    /// Waits until the value is resolved or, if requested, the wait is interrupted.
+    ///
+    /// - Parameter interruptible: A Boolean value that indicates whether ``interrupt()`` may abort
+    ///   this wait.
+    /// - Returns: The resolved value.
+    /// - Throws: `Errno.interrupted` if `interruptible` is `true` and the wait is interrupted before
+    ///   the value is resolved.
+    public func wait(interruptible: Bool) throws(Errno) -> T {
+        if let box = state.atomicBox.load() {
             return box.value
         }
 
-        return condition.withLock {
-            while true {
-                if let box = atomicBox.load() {
-                    return box.value
-                }
+        state.condition.lock()
+        defer {
+            state.condition.unlock()
+        }
 
-                condition.wait()
+        let generation = state.interruptGeneration
+
+        while true {
+            if let box = state.atomicBox.load() {
+                return box.value
             }
+            guard !interruptible || state.interruptGeneration == generation else {
+                throw .interrupted
+            }
+
+            state.condition.wait()
         }
     }
 
@@ -102,11 +156,24 @@ public struct BlockingLazy<T>: BlockingLazyResolver<T> {
     /// - Parameter deadline: The deadline that bounds how long the call may wait.
     /// - Returns: The resolved value, or `nil` if the deadline expires before resolution.
     public func wait(until deadline: Deadline) -> T? {
-        if let box = atomicBox.load() {
+        try! wait(until: deadline, interruptible: false)
+    }
+
+    /// Waits until the value is resolved, the deadline expires, or, if requested, the wait is
+    /// interrupted.
+    ///
+    /// - Parameter deadline: The deadline that bounds how long the call may wait.
+    /// - Parameter interruptible: A Boolean value that indicates whether ``interrupt()`` may abort
+    ///   this wait.
+    /// - Returns: The resolved value, or `nil` if the deadline expires before resolution.
+    /// - Throws: `Errno.interrupted` if `interruptible` is `true` and the wait is interrupted before
+    ///   the value is resolved.
+    public func wait(until deadline: Deadline, interruptible: Bool) throws(Errno) -> T? {
+        if let box = state.atomicBox.load() {
             return box.value
         }
         if case .forever = deadline {
-            return wait()
+            return try wait(interruptible: interruptible)
         }
 
         let date: Date? = if case .deadline(let time) = deadline {
@@ -115,22 +182,43 @@ public struct BlockingLazy<T>: BlockingLazyResolver<T> {
             nil
         }
 
-        return condition.withLock {
-            while true {
-                if let box = atomicBox.load() {
-                    return box.value
-                }
+        state.condition.lock()
+        defer {
+            state.condition.unlock()
+        }
 
-                guard let date, condition.wait(until: date) else {
-                    return nil
-                }
+        let generation = state.interruptGeneration
+
+        while true {
+            if let box = state.atomicBox.load() {
+                return box.value
             }
+            guard !interruptible || state.interruptGeneration == generation else {
+                throw Errno.interrupted
+            }
+            guard let date else {
+                return nil
+            }
+            guard state.condition.wait(until: date) else {
+                guard !interruptible || state.interruptGeneration == generation else {
+                    throw Errno.interrupted
+                }
+                return nil
+            }
+        }
+    }
+
+    /// Interrupts currently blocked interruptible waits.
+    public func interrupt() {
+        state.condition.withLock {
+            state.interruptGeneration &+= 1
+            state.condition.broadcast()
         }
     }
 
     /// A Boolean value that indicates whether the value has been resolved.
     public var isResolved: Bool {
-        atomicBox.load() != nil
+        state.atomicBox.load() != nil
     }
 
     /// Resolves the value.
@@ -144,12 +232,12 @@ public struct BlockingLazy<T>: BlockingLazyResolver<T> {
     @discardableResult
     public func resolve(_ value: T) -> Bool {
         let box = Box(value)
-        guard atomicBox.storeIfNilThenLoad(box) === box else {
+        guard state.atomicBox.storeIfNilThenLoad(box) === box else {
             return false
         }
 
-        condition.withLock {
-            condition.broadcast()
+        state.condition.withLock {
+            state.condition.broadcast()
         }
         return true
     }

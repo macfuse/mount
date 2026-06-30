@@ -19,10 +19,6 @@ import System
 
 /// A channel transport backed by an XPC listener and peer connection.
 final class XPCTransport: Channel.Transport, @unchecked Sendable {
-    /// POSIX signals that should wake blocked receive operations so the transport can shut down
-    /// promptly.
-    private static let interruptSignals = [SIGHUP, SIGINT, SIGPIPE, SIGTERM]
-
     /// Mutable transport state protected by `condition`.
     private struct State {
         /// A Boolean value that indicates whether the transport can no longer exchange messages.
@@ -47,7 +43,6 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
 
     private let listener: xpc_connection_t
     private let condition: NSCondition
-    private let signalSources: [DispatchSourceSignal]
     private var state: State
 
     @BlockingLazy
@@ -57,32 +52,12 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
     init() {
         listener = xpc_connection_create(nil, nil)
         condition = NSCondition()
-        signalSources = Self.interruptSignals.map {
-            DispatchSource.makeSignalSource(signal: $0)
-        }
         state = State()
     }
 
     /// The endpoint passed to the mount service so the file system extension can connect.
     var endpoint: xpc_endpoint_t {
         xpc_endpoint_create(listener)
-    }
-
-    /// Resumes all signal sources used to interrupt blocked receive operations.
-    private func resumeSignalSources() {
-        for signalSource in signalSources {
-            signalSource.setEventHandler { [weak self] in
-                self?.interrupt()
-            }
-            signalSource.resume()
-        }
-    }
-
-    /// Stops all signal sources used to interrupt blocked receive operations.
-    private func cancelSignalSources() {
-        for signalSource in signalSources {
-            signalSource.cancel()
-        }
     }
 
     /// Activates the listener and waits for a file system extension peer connection.
@@ -111,7 +86,6 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
         }
 
         xpc_connection_activate(listener)
-        resumeSignalSources()
     }
 
     /// Cancels the listener and its endpoint-based peer connections.
@@ -130,7 +104,6 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
         if case .some(.some(let connection)) = $connection.value {
             xpc_connection_send_barrier(connection, cancel)
         } else {
-            cancelSignalSources()
             cancel()
         }
     }
@@ -147,8 +120,6 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
             guard xpc_get_type(event) == XPC_TYPE_DICTIONARY else {
                 if event === XPC_ERROR_CONNECTION_INVALID {
                     Logger.mount.info("Connection to file system extension invalidated")
-
-                    self.cancelSignalSources()
 
                     self.condition.withLock {
                         self.state.isInvalid = true
@@ -179,14 +150,6 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
         $connection.resolve(connection)
     }
 
-    /// Interrupts blocked receive operations without invalidating the transport.
-    private func interrupt() {
-        condition.withLock {
-            state.interruptGeneration &+= 1
-            condition.broadcast()
-        }
-    }
-
     /// Returns the current channel flags.
     func getFlags() throws(Errno) -> Channel.Flags {
         condition.withLock { state.flags }
@@ -197,6 +160,14 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
     /// - Parameter flags: The new channel flags.
     func setFlags(_ flags: Channel.Flags) throws(Errno) {
         condition.withLock { state.flags = flags }
+    }
+
+    /// Interrupts blocked receive operations.
+    func interrupt() throws(Errno) {
+        condition.withLock {
+            state.interruptGeneration &+= 1
+            condition.broadcast()
+        }
     }
 
     /// Waits until an XPC message is queued or the deadline expires.
