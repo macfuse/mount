@@ -70,7 +70,7 @@ final class MFMessage: ManagedBuffer<any Message, iovec> {
 ///
 /// - Parameter message: The message whose body size should be returned. May not be `nil`.
 /// - Returns: The message body size in bytes, or `-1` if an error occurs.
-@c @implementation
+@c(_MFMessageGetBodySize)
 public func MFMessageGetBodySize(_ message: MFMessageRef!) -> ssize_t {
     Bridge.perform { () throws(Errno) in
         guard let message = Bridge.unwrap(reference: message, as: MFMessage.self) else {
@@ -113,7 +113,7 @@ public func MFMessageGetBodySize(_ message: MFMessageRef!) -> ssize_t {
 ///   - message: The message whose body buffers should be returned.
 ///   - buffers: On return, points to the first `iovec` value in the borrowed buffer array.
 /// - Returns: The number of buffers in the message body, or `-1` if an error occurs.
-@c @implementation
+@c(_MFMessageGetBodyBuffers)
 public func MFMessageGetBodyBuffers(
     _ message: MFMessageRef,
     _ buffers: UnsafeMutablePointer<UnsafePointer<iovec>>
@@ -153,7 +153,7 @@ public func MFMessageGetBodyBuffers(
 ///     a reply buffer.
 /// - Returns: The size of the reply buffer in bytes, `0` if the message does not have a reply buffer,
 ///   or `-1` if an error occurs.
-@c @implementation
+@c(_MFMessageGetReplyBuffer)
 public func MFMessageGetReplyBuffer(
     _ message: MFMessageRef,
     _ buffer: UnsafeMutablePointer<UnsafeMutableRawPointer?>

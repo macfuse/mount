@@ -34,7 +34,7 @@ extension Channel {
 /// This function has no defined `errno` failure values.
 ///
 /// - Returns: A newly created channel, or `nil` if the channel could not be created.
-@c @implementation
+@c(_MFChannelCreate)
 public func MFChannelCreate() -> MFChannelRef? {
     let channel = Channel()
     return Unmanaged.passRetained(channel).toOpaque()
@@ -55,7 +55,7 @@ public func MFChannelCreate() -> MFChannelRef? {
 ///
 /// - Parameter fileDescriptor: The device file descriptor to use.
 /// - Returns: A newly created channel, or `nil` if the channel could not be created.
-@c @implementation
+@c(_MFChannelCreateWithDeviceFileDescriptor)
 public func MFChannelCreateWithDeviceFileDescriptor(_ fileDescriptor: CInt) -> MFChannelRef? {
     Bridge.perform { () throws(Errno) in
         let fileDescriptor = FileDescriptor(rawValue: fileDescriptor)
@@ -86,7 +86,7 @@ public func MFChannelCreateWithDeviceFileDescriptor(_ fileDescriptor: CInt) -> M
 /// - Parameter channel: The channel whose file descriptor should be returned.
 /// - Returns: The channel's file descriptor, or `-1` if the channel has no associated file
 ///   descriptor or an error occurs.
-@c @implementation
+@c(_MFChannelGetFileDescriptor)
 public func MFChannelGetFileDescriptor(_ channel: MFChannelRef) -> CInt {
     Bridge.perform { () throws(Errno) in
         guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {
@@ -135,7 +135,7 @@ extension Channel.Flags {
 ///   - channel: The channel whose flags should be returned.
 ///   - flags: On return, contains the current channel flags.
 /// - Returns: `true` if the flags were returned successfully; otherwise `false`.
-@c @implementation
+@c(_MFChannelGetFlags)
 public func MFChannelGetFlags(
     _ channel: MFChannelRef,
     _ flags: UnsafeMutablePointer<MFChannelFlags>
@@ -171,7 +171,7 @@ public func MFChannelGetFlags(
 ///   - channel: The channel whose flags should be changed.
 ///   - flags: A bit mask composed of `MFChannelFlag` values.
 /// - Returns: `true` if the flags were set successfully; otherwise `false`.
-@c @implementation
+@c(_MFChannelSetFlags)
 public func MFChannelSetFlags(_ channel: MFChannelRef, _ flags: MFChannelFlags) -> Bool {
     Bridge.perform { () throws(Errno) in
         guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {
@@ -208,7 +208,7 @@ public func MFChannelSetFlags(_ channel: MFChannelRef, _ flags: MFChannelFlags) 
 ///     negative value to wait indefinitely.
 /// - Returns: A positive value if a complete message is available, `0` if the operation timed out,
 ///   or `-1` if an error occurs.
-@c @implementation
+@c(_MFChannelWaitForNextMessage)
 public func MFChannelWaitForNextMessage(_ channel: MFChannelRef, _ timeout: Int32) -> Int32 {
     Bridge.perform { () throws(Errno) in
         guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {
@@ -256,7 +256,7 @@ public func MFChannelWaitForNextMessage(_ channel: MFChannelRef, _ timeout: Int3
 ///
 /// - Parameter channel: The channel from which to receive the next FUSE message.
 /// - Returns: A retained message reference, or `nil` if an error occurs.
-@c @implementation
+@c(_MFChannelCopyNextMessage)
 public func MFChannelCopyNextMessage(_ channel: MFChannelRef) -> MFMessageRef? {
     Bridge.perform { () throws(Errno) in
         guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {
@@ -300,7 +300,7 @@ public func MFChannelCopyNextMessage(_ channel: MFChannelRef) -> MFMessageRef? {
 ///   - buffers: An array of `iovec` values describing the body buffers.
 ///   - count: The number of buffers. Must be greater than `0`.
 /// - Returns: The number of bytes sent, or `-1` if an error occurs.
-@c @implementation
+@c(_MFChannelSendMessage)
 public func MFChannelSendMessage(
     _ channel: MFChannelRef,
     _ buffers: UnsafePointer<iovec>,
@@ -342,7 +342,7 @@ public func MFChannelSendMessage(
 ///
 /// - Parameter channel: The channel to close.
 /// - Returns: `true` if the channel was closed successfully; otherwise `false`.
-@c @implementation
+@c(_MFChannelClose)
 public func MFChannelClose(_ channel: MFChannelRef) -> Bool {
     Bridge.perform { () throws(Errno) in
         guard let channel = Bridge.unwrap(reference: channel, as: Channel.self) else {

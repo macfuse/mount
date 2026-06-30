@@ -17,7 +17,7 @@ import OSLog
 ///
 /// - Parameter reference: The object to retain.
 /// - Returns: The retained object reference.
-@c @implementation
+@c(_MFRetain)
 public func MFRetain(_ reference: MFTypeRef) -> MFTypeRef {
     _ = Unmanaged<AnyObject>.fromOpaque(reference).retain()
     return reference
@@ -29,7 +29,7 @@ public func MFRetain(_ reference: MFTypeRef) -> MFTypeRef {
 /// release, the object is destroyed.
 ///
 /// - Parameter reference: The object to release.
-@c @implementation
+@c(_MFRelease)
 public func MFRelease(_ reference: MFTypeRef) {
     Unmanaged<AnyObject>.fromOpaque(reference).release()
 }
