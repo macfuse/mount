@@ -270,7 +270,7 @@ public func MFChannelCopyNextMessage(_ channel: MFChannelRef) -> MFMessageRef? {
             let box = MFMessage.make(from: message)
             return Unmanaged.passRetained(box).toOpaque()
         } catch {
-            if error != .operationNotSupportedByDevice {
+            if error != .operationNotSupportedByDevice && error != .interrupted {
                 Bridge.log(level: .error, "Failed to receive message: \(error)")
             }
             throw error
