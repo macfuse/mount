@@ -14,6 +14,33 @@
 
 #include "MFMount-Swift.h"
 
+static void MFReleaseCleanup(void *referencep)
+{
+	MFTypeRef reference = *(MFTypeRef *)referencep;
+
+	if (reference != NULL) {
+		int oldstate;
+
+		pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, &oldstate);
+		_MFRelease(reference);
+		pthread_setcancelstate(oldstate, NULL);
+	}
+}
+
+static void MFChannelReleaseCleanup(void *channelp)
+{
+	MFChannelRef channel = *(MFChannelRef *)channelp;
+
+	if (channel != NULL) {
+		int oldstate;
+
+		pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, &oldstate);
+		(void)_MFChannelClose(channel);
+		_MFRelease(channel);
+		pthread_setcancelstate(oldstate, NULL);
+	}
+}
+
 #define MFCancelSafe(expression)                                    \
 	do {                                                            \
 		int oldstate;                                               \
@@ -21,6 +48,35 @@
 		__auto_type result = (expression);                          \
 		int saved_errno = errno;                                    \
 		pthread_setcancelstate(oldstate, NULL);                     \
+		pthread_testcancel();                                       \
+		errno = saved_errno;                                        \
+		return result;                                              \
+	} while (0)
+
+#define MFCancelSafeOwned(expression)                               \
+	do {                                                            \
+		int oldstate;                                               \
+		pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, &oldstate);  \
+		__auto_type result = (expression);                          \
+		int saved_errno = errno;                                    \
+		pthread_cleanup_push(MFReleaseCleanup, &result);            \
+		pthread_setcancelstate(oldstate, NULL);                     \
+		pthread_testcancel();                                       \
+		pthread_cleanup_pop(0);                                     \
+		errno = saved_errno;                                        \
+		return result;                                              \
+	} while (0)
+
+#define MFCancelSafeChannel(expression)                             \
+	do {                                                            \
+		int oldstate;                                               \
+		pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, &oldstate);  \
+		__auto_type result = (expression);                          \
+		int saved_errno = errno;                                    \
+		pthread_cleanup_push(MFChannelReleaseCleanup, &result);     \
+		pthread_setcancelstate(oldstate, NULL);                     \
+		pthread_testcancel();                                       \
+		pthread_cleanup_pop(0);                                     \
 		errno = saved_errno;                                        \
 		return result;                                              \
 	} while (0)
@@ -32,13 +88,14 @@
 		(expression);                                               \
 		int saved_errno = errno;                                    \
 		pthread_setcancelstate(oldstate, NULL);                     \
+		pthread_testcancel();                                       \
 		errno = saved_errno;                                        \
 		return;                                                     \
 	} while (0)
 
 MFTypeRef MFRetain(MFTypeRef reference)
 {
-	MFCancelSafe(_MFRetain(reference));
+	MFCancelSafeOwned(_MFRetain(reference));
 }
 
 void MFRelease(MFTypeRef reference)
@@ -65,12 +122,12 @@ ssize_t MFMessageGetReplyBuffer(MFMessageRef message, void **buffer)
 
 MFChannelRef MFChannelCreate(void)
 {
-	MFCancelSafe(_MFChannelCreate());
+	MFCancelSafeChannel(_MFChannelCreate());
 }
 
 MFChannelRef MFChannelCreateWithDeviceFileDescriptor(int fileDescriptor)
 {
-	MFCancelSafe(_MFChannelCreateWithDeviceFileDescriptor(fileDescriptor));
+	MFCancelSafeChannel(_MFChannelCreateWithDeviceFileDescriptor(fileDescriptor));
 }
 
 int MFChannelGetFileDescriptor(MFChannelRef channel)
@@ -100,7 +157,7 @@ int32_t MFChannelWaitForNextMessage(MFChannelRef channel, int32_t timeout)
 
 MFMessageRef MFChannelCopyNextMessage(MFChannelRef channel)
 {
-	MFCancelSafe(_MFChannelCopyNextMessage(channel));
+	MFCancelSafeOwned(_MFChannelCopyNextMessage(channel));
 }
 
 ssize_t MFChannelSendMessage(
