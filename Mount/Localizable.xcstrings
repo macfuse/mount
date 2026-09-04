@@ -46,6 +46,12 @@
             "value" : "Cerrar"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chiudi"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -103,6 +109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Volumen no disponible"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volume non disponibile"
           }
         },
         "ko" : {
@@ -164,6 +176,12 @@
             "value" : "No se ha podido montar el volumen en la siguiente ubicación:\n\n%1$(mountPoint)@\n\nAsegúrate de que la carpeta contenedora exista y de que tengas permiso para crear carpetas en ella. A continuación, vuelve a intentar montar el volumen."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non è stato possibile montare il volume nella seguente posizione:\n\n%1$(mountPoint)@\n\nAssicurati che la cartella superiore esista e di disporre dei permessi necessari per creare cartelle al suo interno. Quindi prova nuovamente a montare il volume."
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -221,6 +239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancelar"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annulla"
           }
         },
         "ko" : {
@@ -282,6 +306,12 @@
             "value" : "Abrir la guía “Getting Started”"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri la guida “Getting Started”"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -339,6 +369,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activar la extensión del sistema de archivos"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attiva l’estensione del file system"
           }
         },
         "ko" : {
@@ -400,6 +436,12 @@
             "value" : "Activa la extensión del sistema de archivos de %1$(productName)@.\n\nAbre Ajustes del Sistema > General > Ítems de inicio y extensiones. En la sección Extensiones, haz clic en “Por categoría”. Haz clic en el botón Información situado junto a “Extensiones del sistema de archivos” y activa la extensión del sistema de archivos de %1$(productName)@.\n\nA continuación, vuelve a intentar montar el volumen."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attiva l’estensione del file system di %1$(productName)@.\n\nApri Impostazioni di Sistema › Generali › Elementi login ed estensioni. In Estensioni, fai clic su “Per categoria”. Fai clic sul pulsante Informazioni accanto a “Estensioni del file system” e attiva l’estensione del file system di %1$(productName)@.\n\nQuindi prova nuovamente a montare il volume."
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -457,6 +499,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir Ajustes del Sistema"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri Impostazioni di Sistema"
           }
         },
         "ko" : {
@@ -518,6 +566,12 @@
             "value" : "Cancelar"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annulla"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -575,6 +629,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir la guía “Getting Started”"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri la guida “Getting Started”"
           }
         },
         "ko" : {
@@ -636,6 +696,12 @@
             "value" : "Instalar la herramienta asociada"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installa lo strumento di supporto"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -693,6 +759,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Instalar la herramienta asociada"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installa lo strumento di supporto"
           }
         },
         "ko" : {
@@ -754,6 +826,12 @@
             "value" : "Instala la herramienta asociada necesaria para montar los volúmenes de %1$(productName)@. Introduce un nombre y una contraseña de administrador para continuar.\n\nUna vez instalada la herramienta asociada, el volumen se montará automáticamente."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installa lo strumento di supporto necessario per montare i volumi di %1$(productName)@. Inserisci un nome e una password di amministratore per continuare.\n\nAl termine dell’installazione dello strumento di supporto, il volume verrà montato automaticamente."
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -811,6 +889,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancelar"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annulla"
           }
         },
         "ko" : {
@@ -872,6 +956,12 @@
             "value" : "Abrir la guía “Getting Started”"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri la guida “Getting Started”"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -929,6 +1019,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Registrar la extensión del sistema de archivos"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registra l’estensione del file system"
           }
         },
         "ko" : {
@@ -990,6 +1086,12 @@
             "value" : "Registra la extensión del sistema de archivos de %1$(productName)@.\n\nReinicia el Mac y, a continuación, vuelve a intentar montar el volumen."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registra l’estensione del file system di %1$(productName)@.\n\nRiavvia il Mac, quindi prova nuovamente a montare il volume."
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1047,6 +1149,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Registrar la extensión del sistema de archivos"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registra l’estensione del file system"
           }
         },
         "ko" : {
@@ -1108,6 +1216,12 @@
             "value" : "Cancelar"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annulla"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1165,6 +1279,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error inesperado"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Errore inatteso"
           }
         },
         "ko" : {
@@ -1226,6 +1346,12 @@
             "value" : "Se ha producido un error inesperado al montar el volumen de %1$(productName)@.\n\nAsegúrate de que estás utilizando la versión más reciente de %1$(productName)@.\n\nSi el problema persiste, consulta la guía “Troubleshooting”."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si è verificato un errore inatteso durante il montaggio del volume di %1$(productName)@.\n\nAssicurati di utilizzare la versione più recente di %1$(productName)@.\n\nSe il problema persiste, consulta la guida “Troubleshooting”."
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1283,6 +1409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir la guía “Troubleshooting”"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri la guida “Troubleshooting”"
           }
         },
         "ko" : {
