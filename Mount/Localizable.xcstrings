@@ -39,6 +39,12 @@
             "state" : "translated",
             "value" : "Cerrar"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "닫기"
+          }
         }
       }
     },
@@ -79,6 +85,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Volumen no disponible"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "볼륨을 사용할 수 없음"
           }
         }
       }
@@ -121,6 +133,12 @@
             "state" : "translated",
             "value" : "No se ha podido montar el volumen en la siguiente ubicación:\n\n%1$(mountPoint)@\n\nAsegúrate de que la carpeta contenedora exista y de que tengas permiso para crear carpetas en ella. A continuación, vuelve a intentar montar el volumen."
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 위치에 볼륨을 마운트할 수 없습니다:\n\n%1$(mountPoint)@\n\n상위 폴더가 존재하고 해당 위치에 폴더를 생성할 권한이 있는지 확인하십시오. 그런 다음 볼륨을 다시 마운트해 보십시오."
+          }
         }
       }
     },
@@ -161,6 +179,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancelar"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
           }
         }
       }
@@ -203,6 +227,12 @@
             "state" : "translated",
             "value" : "Abrir la guía “Getting Started”"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘Getting Started’ 설명서 열기"
+          }
         }
       }
     },
@@ -243,6 +273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activar la extensión del sistema de archivos"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 시스템 확장 프로그램 활성화"
           }
         }
       }
@@ -285,6 +321,12 @@
             "state" : "translated",
             "value" : "Activa la extensión del sistema de archivos de %1$(productName)@.\n\nAbre Ajustes del Sistema > General > Ítems de inicio y extensiones. En la sección Extensiones, haz clic en “Por categoría”. Haz clic en el botón Información situado junto a “Extensiones del sistema de archivos” y activa la extensión del sistema de archivos de %1$(productName)@.\n\nA continuación, vuelve a intentar montar el volumen."
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$(productName)@ 파일 시스템 확장 프로그램을 활성화하십시오.\n\n시스템 설정 > 일반 > 로그인 항목 및 확장 프로그램을 여십시오. 확장 프로그램으로 이동하여 ‘카테고리별’을 클릭한 다음, ‘파일 시스템 확장 프로그램’ 옆의 정보 버튼을 클릭하고 %1$(productName)@ 파일 시스템 확장 프로그램을 켜십시오.\n\n그런 다음 볼륨을 다시 마운트해 보십시오."
+          }
         }
       }
     },
@@ -325,6 +367,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir Ajustes del Sistema"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시스템 설정 열기"
           }
         }
       }
@@ -367,6 +415,12 @@
             "state" : "translated",
             "value" : "Cancelar"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
+          }
         }
       }
     },
@@ -407,6 +461,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir la guía “Getting Started”"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘Getting Started’ 설명서 열기"
           }
         }
       }
@@ -449,6 +509,12 @@
             "state" : "translated",
             "value" : "Instalar la herramienta asociada"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보조 프로그램 설치"
+          }
         }
       }
     },
@@ -489,6 +555,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Instalar la herramienta asociada"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보조 프로그램 설치"
           }
         }
       }
@@ -531,6 +603,12 @@
             "state" : "translated",
             "value" : "Instala la herramienta asociada necesaria para montar los volúmenes de %1$(productName)@. Introduce un nombre y una contraseña de administrador para continuar.\n\nUna vez instalada la herramienta asociada, el volumen se montará automáticamente."
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$(productName)@ 볼륨을 마운트하는 데 필요한 보조 프로그램을 설치하십시오. 계속하려면 관리자 이름과 암호를 입력하십시오.\n\n보조 프로그램이 설치되면 볼륨이 자동으로 마운트됩니다."
+          }
         }
       }
     },
@@ -571,6 +649,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancelar"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
           }
         }
       }
@@ -613,6 +697,12 @@
             "state" : "translated",
             "value" : "Abrir la guía “Getting Started”"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘Getting Started’ 설명서 열기"
+          }
         }
       }
     },
@@ -653,6 +743,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Registrar la extensión del sistema de archivos"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 시스템 확장 프로그램 등록"
           }
         }
       }
@@ -695,6 +791,12 @@
             "state" : "translated",
             "value" : "Registra la extensión del sistema de archivos de %1$(productName)@.\n\nReinicia el Mac y, a continuación, vuelve a intentar montar el volumen."
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$(productName)@ 파일 시스템 확장 프로그램을 등록하십시오.\n\nMac을 재시동한 다음 볼륨을 다시 마운트해 보십시오."
+          }
         }
       }
     },
@@ -735,6 +837,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Registrar la extensión del sistema de archivos"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 시스템 확장 프로그램 등록"
           }
         }
       }
@@ -777,6 +885,12 @@
             "state" : "translated",
             "value" : "Cancelar"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
+          }
         }
       }
     },
@@ -817,6 +931,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error inesperado"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "예기치 않은 오류"
           }
         }
       }
@@ -859,6 +979,12 @@
             "state" : "translated",
             "value" : "Se ha producido un error inesperado al montar el volumen de %1$(productName)@.\n\nAsegúrate de que estás utilizando la versión más reciente de %1$(productName)@.\n\nSi el problema persiste, consulta la guía “Troubleshooting”."
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$(productName)@ 볼륨을 마운트하는 동안 예기치 않은 오류가 발생했습니다.\n\n사용 중인 %1$(productName)@의 버전이 최신인지 확인하십시오.\n\n문제가 지속되면 ‘Troubleshooting’ 설명서를 참조하십시오."
+          }
         }
       }
     },
@@ -899,6 +1025,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir la guía “Troubleshooting”"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘Troubleshooting’ 설명서 열기"
           }
         }
       }
