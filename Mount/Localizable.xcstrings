@@ -1,6 +1,57 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "creatingMountPointFailed.close" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Schließen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
+    "creatingMountPointFailed.header" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volume konnte nicht aktiviert werden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volume Not Available"
+          }
+        }
+      }
+    },
+    "creatingMountPointFailed.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Volume konnte an folgendem Ort nicht aktiviert werden:\n\n%1$(mountPoint)@\n\nStelle sicher, dass der übergeordnete Ordner vorhanden ist und du die Berechtigung hast, dort Ordner zu erstellen. Versuche anschließend erneut, das Volume zu aktivieren."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The volume could not be made available at the following location:\n\n%1$(mountPoint)@\n\nMake sure the enclosing folder exists and that you have permission to create folders there. Then try mounting the volume again."
+          }
+        }
+      }
+    },
     "enableFileSystemExtension.cancel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -58,7 +109,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktiviere die %1$(productName)@ Dateisystemerweiterung.\n\nÖffne Systemeinstellungen › Allgemein › Anmeldeobjekte & Erweiterungen. Klicke unter Erweiterungen auf Nach Kategorie. Klicke neben Dateisystemerweiterungen auf das Info-Symbol und aktiviere die %1$(productName)@ Dateisystemerweiterung.\n\nVersuche anschließend erneut, das Volume einzubinden."
+            "value" : "Aktiviere die %1$(productName)@ Dateisystemerweiterung.\n\nÖffne Systemeinstellungen › Allgemein › Anmeldeobjekte & Erweiterungen. Klicke unter Erweiterungen auf Nach Kategorie. Klicke neben Dateisystemerweiterungen auf das Info-Symbol und aktiviere die %1$(productName)@ Dateisystemerweiterung.\n\nVersuche anschließend erneut, das Volume zu aktivieren."
           }
         },
         "en" : {
@@ -160,7 +211,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Installiere das Hilfsprogramm, das zum Einbinden von %1$(productName)@ Volumes erforderlich ist. Gib dazu den Namen und das Passwort eines Administrators ein.\n\nDas Volume wird anschließend automatisch eingebunden."
+            "value" : "Installiere das Hilfsprogramm, das zum Aktivieren von %1$(productName)@ Volumes erforderlich ist. Gib dazu den Namen und das Passwort eines Administrators ein.\n\nDas Volume wird anschließend automatisch aktiviert."
           }
         },
         "en" : {
@@ -228,7 +279,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Registriere die %1$(productName)@ Dateisystemerweiterung.\n\nStarte deinen Mac neu und versuche anschließend erneut, das Volume einzubinden."
+            "value" : "Registriere die %1$(productName)@ Dateisystemerweiterung.\n\nStarte deinen Mac neu und versuche anschließend erneut, das Volume zu aktivieren."
           }
         },
         "en" : {
@@ -296,7 +347,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beim Einbinden des %1$(productName)@ Volumes ist ein unerwarteter Fehler aufgetreten.\n\nStelle sicher, dass du die neueste Version von %1$(productName)@ verwendest.\n\nFalls das Problem weiterhin auftritt, findest du weitere Informationen im Troubleshooting Guide."
+            "value" : "Beim Aktivieren des %1$(productName)@ Volumes ist ein unerwarteter Fehler aufgetreten.\n\nStelle sicher, dass du die neueste Version von %1$(productName)@ verwendest.\n\nFalls das Problem weiterhin auftritt, findest du weitere Informationen im Troubleshooting Guide."
           }
         },
         "en" : {
@@ -325,5 +376,5 @@
       }
     }
   },
-  "version" : "1.2"
+  "version" : "1.3"
 }

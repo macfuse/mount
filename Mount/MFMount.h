@@ -647,6 +647,11 @@ typedef CF_ENUM(int32_t, MFMountResult) {
     MFMountResultFileSystemExtensionRequiresApproval = 4,
 
     /*!
+     * The requested mount point could not be created.
+     */
+    MFMountResultCreatingMountPointFailed = 5,
+
+    /*!
      * An unexpected failure occurred. errno contains one of the values
      * documented for MFMount().
      */

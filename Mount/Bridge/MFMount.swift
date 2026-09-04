@@ -124,6 +124,8 @@ public func MFMount(
                 }
 
                 Bridge.log(level: .error, "Failed to install helper tools")
+
+                try? channel.close()
                 return .helperToolsInstallationFailed
             } catch .installingFailed(.unknown) {
                 /*
@@ -184,6 +186,8 @@ public func MFMount(
                 }
 
                 Bridge.log(level: .error, "File system extension not found")
+
+                try? channel.close()
                 return .fileSystemExtensionNotFound
             } catch .mountingFailed(.fileSystemExtensionRequiresApproval) {
                 if !quiet {
@@ -219,6 +223,8 @@ public func MFMount(
                 }
 
                 Bridge.log(level: .error, "File system extension not enabled")
+
+                try? channel.close()
                 return .fileSystemExtensionRequiresApproval
             } catch .mountingFailed(.activatingDeviceFailed) {
                 /*
@@ -234,10 +240,10 @@ public func MFMount(
                  */
 
                 Bridge.log(level: .error, "Failed to initialize volume")
-            } catch .mountingFailed(.creatingMountPointFailed ) {
+            } catch .mountingFailed(.creatingMountPointFailed) {
                 /*
                  * The mount service failed to create the mount point on behalf of the user. Missing
-                 * mount points are create according to these rules:
+                 * mount points are created according to these rules:
                  *
                  * - Create only the final path component with mode 0755. All parent directories
                  *   must already exist.
@@ -246,7 +252,24 @@ public func MFMount(
                  * - Create all other mount points in the requesting user’s security context.
                  */
 
+                if !quiet {
+                    _ = Alert.display(
+                        header: String(localized: .creatingMountPointFailedHeader),
+                        message: String(
+                            localized: .creatingMountPointFailedMessage(
+                                mountPoint: mountPoint.string
+                            )
+                        ),
+                        defaultButtonTitle: String(
+                            localized: .creatingMountPointFailedClose
+                        )
+                    )
+                }
+
                 Bridge.log(level: .error, "Failed to create mount point")
+
+                try? channel.close()
+                return .creatingMountPointFailed
             } catch .mountingFailed(.mountCommandFailed(.status(let status))) {
                 /*
                  * The mount(8) system command called by the mount service on behalf of the user
