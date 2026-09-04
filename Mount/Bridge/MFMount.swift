@@ -234,6 +234,19 @@ public func MFMount(
                  */
 
                 Bridge.log(level: .error, "Failed to initialize volume")
+            } catch .mountingFailed(.creatingMountPointFailed ) {
+                /*
+                 * The mount service failed to create the mount point on behalf of the user. Missing
+                 * mount points are create according to these rules:
+                 *
+                 * - Create only the final path component with mode 0755. All parent directories
+                 *   must already exist.
+                 * - Create direct children of /Volumes as the daemon, then transfer ownership to
+                 *   the requesting user.
+                 * - Create all other mount points in the requesting user’s security context.
+                 */
+
+                Bridge.log(level: .error, "Failed to create mount point")
             } catch .mountingFailed(.mountCommandFailed(.status(let status))) {
                 /*
                  * The mount(8) system command called by the mount service on behalf of the user

@@ -50,6 +50,9 @@ enum Mounter {
         /// The mount service failed to initialize the mounted volume.
         case initializingVolumeFailed
 
+        /// The mount service failed to create the requested mount point.
+        case creatingMountPointFailed
+
         /// The system `mount` command failed.
         case mountCommandFailed(MountCommandError)
 
@@ -74,8 +77,10 @@ enum Mounter {
             case 5:
                 .initializingVolumeFailed
             case 6:
-                .mountCommandFailed(.status(mountCommandStatus))
+                .creatingMountPointFailed
             case 7:
+                .mountCommandFailed(.status(mountCommandStatus))
+            case 8:
                 .mountCommandFailed(.unknown)
             default:
                 .unknown
