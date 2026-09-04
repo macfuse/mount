@@ -33,6 +33,12 @@
             "state" : "translated",
             "value" : "閉じる"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar"
+          }
         }
       }
     },
@@ -67,6 +73,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ボリュームを利用できません"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volumen no disponible"
           }
         }
       }
@@ -103,6 +115,12 @@
             "state" : "translated",
             "value" : "ボリュームを次の場所にマウントできませんでした:\n\n%1$(mountPoint)@\n\n内包しているフォルダが存在し、そこにフォルダを作成するためのアクセス権があることを確認してください。そのあと、ボリュームをもう一度マウントしてみてください。"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se ha podido montar el volumen en la siguiente ubicación:\n\n%1$(mountPoint)@\n\nAsegúrate de que la carpeta contenedora exista y de que tengas permiso para crear carpetas en ella. A continuación, vuelve a intentar montar el volumen."
+          }
         }
       }
     },
@@ -137,6 +155,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キャンセル"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
           }
         }
       }
@@ -173,6 +197,12 @@
             "state" : "translated",
             "value" : "「Getting Started」ガイドを開く"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir la guía “Getting Started”"
+          }
         }
       }
     },
@@ -207,6 +237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルシステム機能拡張を有効にする"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar la extensión del sistema de archivos"
           }
         }
       }
@@ -243,6 +279,12 @@
             "state" : "translated",
             "value" : "%1$(productName)@ファイルシステム機能拡張を有効にしてください。\n\nシステム設定で「一般」＞「ログイン項目と機能拡張」を開きます。「機能拡張」で「カテゴリ別」をクリックします。「ファイルシステム機能拡張」の横にある「情報」ボタンをクリックしてから、%1$(productName)@ファイルシステム機能拡張をオンにします。\n\nそのあと、ボリュームをもう一度マウントしてみてください。"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activa la extensión del sistema de archivos de %1$(productName)@.\n\nAbre Ajustes del Sistema > General > Ítems de inicio y extensiones. En la sección Extensiones, haz clic en “Por categoría”. Haz clic en el botón Información situado junto a “Extensiones del sistema de archivos” y activa la extensión del sistema de archivos de %1$(productName)@.\n\nA continuación, vuelve a intentar montar el volumen."
+          }
         }
       }
     },
@@ -277,6 +319,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "システム設定を開く"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Ajustes del Sistema"
           }
         }
       }
@@ -313,6 +361,12 @@
             "state" : "translated",
             "value" : "キャンセル"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
         }
       }
     },
@@ -347,6 +401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「Getting Started」ガイドを開く"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir la guía “Getting Started”"
           }
         }
       }
@@ -383,6 +443,12 @@
             "state" : "translated",
             "value" : "ヘルパーツールをインストール"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instalar la herramienta asociada"
+          }
         }
       }
     },
@@ -417,6 +483,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ヘルパーツールをインストール"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instalar la herramienta asociada"
           }
         }
       }
@@ -453,6 +525,12 @@
             "state" : "translated",
             "value" : "%1$(productName)@ボリュームのマウントに必要なヘルパーツールをインストールします。続けるには、管理者の名前とパスワードを入力してください。\n\nヘルパーツールがインストールされると、ボリュームは自動的にマウントされます。"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instala la herramienta asociada necesaria para montar los volúmenes de %1$(productName)@. Introduce un nombre y una contraseña de administrador para continuar.\n\nUna vez instalada la herramienta asociada, el volumen se montará automáticamente."
+          }
         }
       }
     },
@@ -487,6 +565,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キャンセル"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
           }
         }
       }
@@ -523,6 +607,12 @@
             "state" : "translated",
             "value" : "「Getting Started」ガイドを開く"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir la guía “Getting Started”"
+          }
         }
       }
     },
@@ -557,6 +647,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルシステム機能拡張を登録"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrar la extensión del sistema de archivos"
           }
         }
       }
@@ -593,6 +689,12 @@
             "state" : "translated",
             "value" : "%1$(productName)@ファイルシステム機能拡張を登録します。\n\nMacを再起動してから、ボリュームをもう一度マウントしてみてください。"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registra la extensión del sistema de archivos de %1$(productName)@.\n\nReinicia el Mac y, a continuación, vuelve a intentar montar el volumen."
+          }
         }
       }
     },
@@ -627,6 +729,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルシステム機能拡張を登録"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrar la extensión del sistema de archivos"
           }
         }
       }
@@ -663,6 +771,12 @@
             "state" : "translated",
             "value" : "キャンセル"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
         }
       }
     },
@@ -697,6 +811,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "予期しないエラー"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error inesperado"
           }
         }
       }
@@ -733,6 +853,12 @@
             "state" : "translated",
             "value" : "%1$(productName)@ボリュームのマウント中に予期しないエラーが起きました。\n\n最新バージョンの%1$(productName)@を使用していることを確認してください。\n\n問題が解決しない場合は、「Troubleshooting」ガイドを参照してください。"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se ha producido un error inesperado al montar el volumen de %1$(productName)@.\n\nAsegúrate de que estás utilizando la versión más reciente de %1$(productName)@.\n\nSi el problema persiste, consulta la guía “Troubleshooting”."
+          }
         }
       }
     },
@@ -767,6 +893,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「Troubleshooting」ガイドを開く"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir la guía “Troubleshooting”"
           }
         }
       }
