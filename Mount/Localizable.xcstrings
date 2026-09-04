@@ -10,6 +10,12 @@
             "value" : "Schließen"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fermer"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25,6 +31,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Volume konnte nicht aktiviert werden"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volume indisponible"
           }
         },
         "en" : {
@@ -44,6 +56,12 @@
             "value" : "Das Volume konnte an folgendem Ort nicht aktiviert werden:\n\n%1$(mountPoint)@\n\nStelle sicher, dass der übergeordnete Ordner vorhanden ist und du die Berechtigung hast, dort Ordner zu erstellen. Versuche anschließend erneut, das Volume zu aktivieren."
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le volume n’a pas pu être monté à l’emplacement suivant :\n\n%1$(mountPoint)@\n\nAssurez-vous que le dossier parent existe et que vous êtes autorisé à y créer des dossiers. Essayez ensuite de monter à nouveau le volume."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -59,6 +77,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abbrechen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler"
           }
         },
         "en" : {
@@ -78,6 +102,12 @@
             "value" : "Getting Started Guide öffnen"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le guide « Getting Started »"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -93,6 +123,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dateisystemerweiterung aktivieren"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activer l’extension du système de fichiers"
           }
         },
         "en" : {
@@ -112,6 +148,12 @@
             "value" : "Aktiviere die %1$(productName)@ Dateisystemerweiterung.\n\nÖffne Systemeinstellungen › Allgemein › Anmeldeobjekte & Erweiterungen. Klicke unter Erweiterungen auf Nach Kategorie. Klicke neben Dateisystemerweiterungen auf das Info-Symbol und aktiviere die %1$(productName)@ Dateisystemerweiterung.\n\nVersuche anschließend erneut, das Volume zu aktivieren."
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activez l’extension du système de fichiers %1$(productName)@.\n\nOuvrez Réglages Système › Général › Ouverture et extensions. Accédez à Extensions, cliquez sur « Par catégorie », puis cliquez sur le bouton d’informations en regard d’« Extensions du système de fichiers » et activez l’extension du système de fichiers %1$(productName)@.\n\nEssayez ensuite de monter à nouveau le volume."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -127,6 +169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Systemeinstellungen öffnen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir Réglages Système"
           }
         },
         "en" : {
@@ -146,6 +194,12 @@
             "value" : "Abbrechen"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -161,6 +215,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Getting Started Guide öffnen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le guide « Getting Started »"
           }
         },
         "en" : {
@@ -180,6 +240,12 @@
             "value" : "Hilfsprogramm installieren"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer l’utilitaire"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -195,6 +261,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hilfsprogramm installieren"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer l’utilitaire"
           }
         },
         "en" : {
@@ -214,6 +286,12 @@
             "value" : "Installiere das Hilfsprogramm, das zum Aktivieren von %1$(productName)@ Volumes erforderlich ist. Gib dazu den Namen und das Passwort eines Administrators ein.\n\nDas Volume wird anschließend automatisch aktiviert."
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installez l’utilitaire requis pour monter les volumes %1$(productName)@. Saisissez le nom et le mot de passe d’un administrateur pour continuer.\n\nUne fois l’utilitaire installé, le volume est monté automatiquement."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -229,6 +307,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abbrechen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler"
           }
         },
         "en" : {
@@ -248,6 +332,12 @@
             "value" : "Getting Started Guide öffnen"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le guide « Getting Started »"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -263,6 +353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dateisystemerweiterung registrieren"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer l’extension du système de fichiers"
           }
         },
         "en" : {
@@ -282,6 +378,12 @@
             "value" : "Registriere die %1$(productName)@ Dateisystemerweiterung.\n\nStarte deinen Mac neu und versuche anschließend erneut, das Volume zu aktivieren."
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrez l’extension du système de fichiers %1$(productName)@.\n\nRedémarrez votre Mac, puis essayez de monter à nouveau le volume."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -297,6 +399,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dateisystemerweiterung registrieren"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer l’extension du système de fichiers"
           }
         },
         "en" : {
@@ -316,6 +424,12 @@
             "value" : "Abbrechen"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -331,6 +445,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unerwarteter Fehler"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur inattendue"
           }
         },
         "en" : {
@@ -350,6 +470,12 @@
             "value" : "Beim Aktivieren des %1$(productName)@ Volumes ist ein unerwarteter Fehler aufgetreten.\n\nStelle sicher, dass du die neueste Version von %1$(productName)@ verwendest.\n\nFalls das Problem weiterhin auftritt, findest du weitere Informationen im Troubleshooting Guide."
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une erreur inattendue est survenue lors du montage du volume %1$(productName)@.\n\nAssurez-vous d’utiliser la dernière version de %1$(productName)@.\n\nSi le problème persiste, consultez le guide « Troubleshooting »."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -365,6 +491,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Troubleshooting Guide öffnen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le guide « Troubleshooting »"
           }
         },
         "en" : {
