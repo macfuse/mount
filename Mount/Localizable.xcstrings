@@ -27,6 +27,12 @@
             "state" : "translated",
             "value" : "关闭"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "閉じる"
+          }
         }
       }
     },
@@ -55,6 +61,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "宗卷不可用"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ボリュームを利用できません"
           }
         }
       }
@@ -85,6 +97,12 @@
             "state" : "translated",
             "value" : "无法在以下位置装载宗卷：\n\n%1$(mountPoint)@\n\n请确保上层文件夹存在，并且你有权限在其中创建文件夹。然后再次尝试装载宗卷。"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ボリュームを次の場所にマウントできませんでした:\n\n%1$(mountPoint)@\n\n内包しているフォルダが存在し、そこにフォルダを作成するためのアクセス権があることを確認してください。そのあと、ボリュームをもう一度マウントしてみてください。"
+          }
         }
       }
     },
@@ -113,6 +131,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "取消"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル"
           }
         }
       }
@@ -143,6 +167,12 @@
             "state" : "translated",
             "value" : "打开“Getting Started”指南"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「Getting Started」ガイドを開く"
+          }
         }
       }
     },
@@ -171,6 +201,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "启用文件系统扩展"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイルシステム機能拡張を有効にする"
           }
         }
       }
@@ -201,6 +237,12 @@
             "state" : "translated",
             "value" : "启用%1$(productName)@文件系统扩展。\n\n打开“系统设置”›“通用”›“登录项与扩展”。前往“扩展”，点按“按类别”，然后点按“文件系统扩展”旁边的“信息”按钮并启用%1$(productName)@文件系统扩展。\n\n然后再次尝试装载宗卷。"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$(productName)@ファイルシステム機能拡張を有効にしてください。\n\nシステム設定で「一般」＞「ログイン項目と機能拡張」を開きます。「機能拡張」で「カテゴリ別」をクリックします。「ファイルシステム機能拡張」の横にある「情報」ボタンをクリックしてから、%1$(productName)@ファイルシステム機能拡張をオンにします。\n\nそのあと、ボリュームをもう一度マウントしてみてください。"
+          }
         }
       }
     },
@@ -229,6 +271,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "打开系统设置"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "システム設定を開く"
           }
         }
       }
@@ -259,6 +307,12 @@
             "state" : "translated",
             "value" : "取消"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル"
+          }
         }
       }
     },
@@ -287,6 +341,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "打开“Getting Started”指南"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「Getting Started」ガイドを開く"
           }
         }
       }
@@ -317,6 +377,12 @@
             "state" : "translated",
             "value" : "安装帮助程序工具"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ヘルパーツールをインストール"
+          }
         }
       }
     },
@@ -345,6 +411,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "安装帮助程序工具"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ヘルパーツールをインストール"
           }
         }
       }
@@ -375,6 +447,12 @@
             "state" : "translated",
             "value" : "安装%1$(productName)@宗卷装载所需的帮助程序工具。输入管理员名称和密码以继续。\n\n帮助程序工具安装完成后，宗卷会自动装载。"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$(productName)@ボリュームのマウントに必要なヘルパーツールをインストールします。続けるには、管理者の名前とパスワードを入力してください。\n\nヘルパーツールがインストールされると、ボリュームは自動的にマウントされます。"
+          }
         }
       }
     },
@@ -403,6 +481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "取消"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル"
           }
         }
       }
@@ -433,6 +517,12 @@
             "state" : "translated",
             "value" : "打开“Getting Started”指南"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「Getting Started」ガイドを開く"
+          }
         }
       }
     },
@@ -461,6 +551,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "注册文件系统扩展"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイルシステム機能拡張を登録"
           }
         }
       }
@@ -491,6 +587,12 @@
             "state" : "translated",
             "value" : "注册%1$(productName)@文件系统扩展。\n\n重新启动Mac，然后再次尝试装载宗卷。"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$(productName)@ファイルシステム機能拡張を登録します。\n\nMacを再起動してから、ボリュームをもう一度マウントしてみてください。"
+          }
         }
       }
     },
@@ -519,6 +621,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "注册文件系统扩展"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイルシステム機能拡張を登録"
           }
         }
       }
@@ -549,6 +657,12 @@
             "state" : "translated",
             "value" : "取消"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル"
+          }
         }
       }
     },
@@ -577,6 +691,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "发生意外错误"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "予期しないエラー"
           }
         }
       }
@@ -607,6 +727,12 @@
             "state" : "translated",
             "value" : "装载%1$(productName)@宗卷时发生意外错误。\n\n请确保你使用的是最新版本的%1$(productName)@。\n\n如果问题仍然存在，请参阅“Troubleshooting”指南。"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$(productName)@ボリュームのマウント中に予期しないエラーが起きました。\n\n最新バージョンの%1$(productName)@を使用していることを確認してください。\n\n問題が解決しない場合は、「Troubleshooting」ガイドを参照してください。"
+          }
         }
       }
     },
@@ -635,6 +761,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "打开“Troubleshooting”指南"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「Troubleshooting」ガイドを開く"
           }
         }
       }
