@@ -21,6 +21,12 @@
             "state" : "translated",
             "value" : "Close"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "关闭"
+          }
         }
       }
     },
@@ -43,6 +49,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Volume Not Available"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "宗卷不可用"
           }
         }
       }
@@ -67,6 +79,12 @@
             "state" : "translated",
             "value" : "The volume could not be made available at the following location:\n\n%1$(mountPoint)@\n\nMake sure the enclosing folder exists and that you have permission to create folders there. Then try mounting the volume again."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法在以下位置装载宗卷：\n\n%1$(mountPoint)@\n\n请确保上层文件夹存在，并且你有权限在其中创建文件夹。然后再次尝试装载宗卷。"
+          }
         }
       }
     },
@@ -89,6 +107,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancel"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
           }
         }
       }
@@ -113,6 +137,12 @@
             "state" : "translated",
             "value" : "Open Getting Started Guide"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开“Getting Started”指南"
+          }
         }
       }
     },
@@ -135,6 +165,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enable File System Extension"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用文件系统扩展"
           }
         }
       }
@@ -159,6 +195,12 @@
             "state" : "translated",
             "value" : "Enable the %1$(productName)@ file system extension.\n\nOpen System Settings › General › Login Items & Extensions. Under Extensions, click By Category. Click the info symbol next to File System Extensions and enable the %1$(productName)@ file system extension.\n\nThen try mounting the volume again."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用%1$(productName)@文件系统扩展。\n\n打开“系统设置”›“通用”›“登录项与扩展”。前往“扩展”，点按“按类别”，然后点按“文件系统扩展”旁边的“信息”按钮并启用%1$(productName)@文件系统扩展。\n\n然后再次尝试装载宗卷。"
+          }
         }
       }
     },
@@ -181,6 +223,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open System Settings"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开系统设置"
           }
         }
       }
@@ -205,6 +253,12 @@
             "state" : "translated",
             "value" : "Cancel"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
         }
       }
     },
@@ -227,6 +281,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open Getting Started Guide"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开“Getting Started”指南"
           }
         }
       }
@@ -251,6 +311,12 @@
             "state" : "translated",
             "value" : "Install Helper Tool"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安装帮助程序工具"
+          }
         }
       }
     },
@@ -273,6 +339,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Install Helper Tool"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安装帮助程序工具"
           }
         }
       }
@@ -297,6 +369,12 @@
             "state" : "translated",
             "value" : "Install the helper tool required to mount %1$(productName)@ volumes. Enter an administrator name and password to continue.\n\nAfter the helper tool is installed, the volume is mounted automatically."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "安装%1$(productName)@宗卷装载所需的帮助程序工具。输入管理员名称和密码以继续。\n\n帮助程序工具安装完成后，宗卷会自动装载。"
+          }
         }
       }
     },
@@ -319,6 +397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancel"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
           }
         }
       }
@@ -343,6 +427,12 @@
             "state" : "translated",
             "value" : "Open Getting Started Guide"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开“Getting Started”指南"
+          }
         }
       }
     },
@@ -365,6 +455,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Register File System Extension"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注册文件系统扩展"
           }
         }
       }
@@ -389,6 +485,12 @@
             "state" : "translated",
             "value" : "Register the %1$(productName)@ file system extension.\n\nRestart your Mac, then try mounting the volume again."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注册%1$(productName)@文件系统扩展。\n\n重新启动Mac，然后再次尝试装载宗卷。"
+          }
         }
       }
     },
@@ -411,6 +513,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Register File System Extension"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注册文件系统扩展"
           }
         }
       }
@@ -435,6 +543,12 @@
             "state" : "translated",
             "value" : "Cancel"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
         }
       }
     },
@@ -457,6 +571,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unexpected Error"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "发生意外错误"
           }
         }
       }
@@ -481,6 +601,12 @@
             "state" : "translated",
             "value" : "An unexpected error occurred while mounting the %1$(productName)@ volume.\n\nPlease make sure you are using the latest version of %1$(productName)@.\n\nIn case the issue persists, refer to the Troubleshooting Guide."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "装载%1$(productName)@宗卷时发生意外错误。\n\n请确保你使用的是最新版本的%1$(productName)@。\n\n如果问题仍然存在，请参阅“Troubleshooting”指南。"
+          }
         }
       }
     },
@@ -503,6 +629,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open Troubleshooting Guide"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开“Troubleshooting”指南"
           }
         }
       }
