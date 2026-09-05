@@ -8,7 +8,7 @@
 //  This framework can be distributed under the terms of the GNU LGPL. See the file LICENSE.txt.
 //
 
-import AppKit
+import CoreServices
 import OSLog
 import System
 
@@ -93,6 +93,11 @@ public func MFMount(
             throw error
         }
 
+        @discardableResult
+        func open(url: URL) -> Bool {
+            LSOpenCFURLRef(url as CFURL, nil) == noErr
+        }
+
         while true {
             do throws(Mounter.Error) {
                 try Mounter.mount(
@@ -117,7 +122,7 @@ public func MFMount(
                     case kCFUserNotificationDefaultResponse:
                         continue
                     case kCFUserNotificationAlternateResponse:
-                        NSWorkspace.shared.open(Parameters.gettingStartedURL)
+                        open(url: Parameters.gettingStartedURL)
                     default:
                         break
                     }
@@ -179,7 +184,7 @@ public func MFMount(
                     case kCFUserNotificationDefaultResponse:
                         try? Mounter.install(force: true, components: ["file-system-extensions"])
                     case kCFUserNotificationAlternateResponse:
-                        NSWorkspace.shared.open(Parameters.gettingStartedURL)
+                        open(url: Parameters.gettingStartedURL)
                     default:
                         break
                     }
@@ -214,9 +219,9 @@ public func MFMount(
                          * System Settings. However, using the URL below scrolls down to the
                          * "Extensions" of the preference pane.
                          */
-                        NSWorkspace.shared.open(Parameters.extensionsSystemSettingsURL)
+                        open(url: Parameters.extensionsSystemSettingsURL)
                     case kCFUserNotificationAlternateResponse:
-                        NSWorkspace.shared.open(Parameters.gettingStartedURL)
+                        open(url: Parameters.gettingStartedURL)
                     default:
                         break
                     }
@@ -300,7 +305,7 @@ public func MFMount(
 
                 switch options {
                 case kCFUserNotificationDefaultResponse:
-                    NSWorkspace.shared.open(Parameters.troubleshootingURL)
+                    open(url: Parameters.troubleshootingURL)
                 default:
                     break
                 }
