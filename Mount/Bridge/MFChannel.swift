@@ -333,7 +333,15 @@ public func MFChannelSendMessage(
             let parts = UnsafeBufferPointer<iovec>(start: buffers, count: Int(count))
             return try channel.send(message: parts)
         } catch {
-            Bridge.log(level: .error, "Failed to send message: \(error)")
+            if (error == .noSuchFileOrDirectory) {
+                /*
+                 * A channel can return ENOENT when the backend no longer accepts a reply because
+                 * its request is no longer pending or the volume is dead. This can happen during
+                 * request interruption or unmount.
+                 */
+            } else {
+                Bridge.log(level: .error, "Failed to send message: \(error)")
+            }
             throw error
         }
     }
