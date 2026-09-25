@@ -168,6 +168,8 @@ enum Mounter {
             UInt64(XPC_CONNECTION_MACH_SERVICE_PRIVILEGED)
         )
 
+        xpc_connection_set_event_handler(connection) { _ in }
+
         if #available(macOS 14.4, *) {
             /*
              * Note: Do not use xpc_connection_set_peer_code_signing_requirement() to specify
@@ -178,15 +180,24 @@ enum Mounter {
             let requirement = xpc_dictionary_create_empty()
             xpc_dictionary_set_string(requirement, "team-identifier", Variant.developmentTeam)
 
-            guard xpc_connection_set_peer_lightweight_code_requirement(
+            let status = xpc_connection_set_peer_lightweight_code_requirement(
                 connection,
                 requirement
-            ) == 0 else {
+            )
+            guard status == 0 else {
+                Logger.mount.error("Failed to set peer code signing requirement: \(status)")
+
+                /*
+                 * Activate and cancel the connection before throwing. Releasing the last reference
+                 * on an inactive connection is undefined. No mount request is sent on this path.
+                 */
+                xpc_connection_activate(connection)
+                xpc_connection_cancel(connection)
+
                 throw .settingPeerCodeSigningRequirementFailed
             }
         }
 
-        xpc_connection_set_event_handler(connection) { _ in }
         xpc_connection_activate(connection)
 
         return connection
@@ -299,6 +310,9 @@ enum Mounter {
          */
 
         let connection = try connect()
+        defer {
+            xpc_connection_cancel(connection)
+        }
 
         let message = try pack(
             backend: backend,
