@@ -61,9 +61,9 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
 
     /// Activates the listener and waits for a file system extension peer connection.
     ///
-    /// The listener accepts one endpoint-based peer connection from the file system extension. If the
-    /// listener is invalidated before a peer connects, blocked send operations fail with
-    /// `Errno.operationNotSupportedByDevice`.
+    /// The listener accepts the first endpoint-based peer connection and rejects all subsequent
+    /// connections, even after the accepted peer disconnects. If the listener is invalidated before
+    /// a peer connects, blocked send operations fail with `Errno.operationNotSupportedByDevice`.
     func activate() throws(Errno) {
         xpc_connection_set_event_handler(listener) { [weak self] event in
             guard let self else {
@@ -78,6 +78,12 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
                     }
                     self.$connection.resolve(nil)
                 }
+                return
+            }
+
+            // Listener events are non-reentrant, so only the first peer can pass this check.
+            guard !self.$connection.isResolved else {
+                xpc_connection_cancel(event)
                 return
             }
 
