@@ -13,6 +13,7 @@ import Darwin
 import Dispatch
 import Foundation
 import OSLog
+import Security
 import System
 @preconcurrency import XPC
 
@@ -47,11 +48,16 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
     @BlockingLazy
     private var connection: xpc_connection_t?
 
+    /// Accessed only by the accepted connection's non-reentrant event handler.
+    private var isPeerVerified: Bool
+
     /// Creates an inactive XPC transport.
     init() {
         listener = xpc_connection_create(nil, nil)
         condition = NSCondition()
         state = State()
+
+        isPeerVerified = false
     }
 
     /// The endpoint passed to the mount service so the file system extension can connect.
@@ -135,6 +141,11 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
             }
 
             do {
+                if !self.isPeerVerified {
+                    try self.verifyPeer(from: event)
+                    self.isPeerVerified = true
+                }
+
                 let message = try XPCMessage(event)
 
                 self.condition.withLock {
@@ -142,10 +153,14 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
                     self.condition.signal()
                 }
             } catch {
-                Logger.mount.info("Received illegal message from file system extension")
+                Logger.mount.info("Failed to decode message from file system extension: \(error)")
                 self.condition.withLock {
                     self.state.isInvalid = true
                     self.condition.broadcast()
+                }
+
+                if let connection = xpc_dictionary_get_remote_connection(event) {
+                    xpc_connection_cancel(connection)
                 }
             }
         }
@@ -153,6 +168,46 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
 
         Logger.mount.info("Connection to file system extension established")
         $connection.resolve(connection)
+    }
+
+    /// Validates the accepted peer's signature before decoding its first message.
+    ///
+    /// Authentication is performed once to avoid repeated signature-validation costs. Efficient
+    /// authentication of every message would require the private function
+    /// `xpc_dictionary_get_audit_token()` to compare each message's sender with the initially
+    /// validated process.
+    ///
+    /// Later messages are trusted on the established connection. This assumes the authenticated
+    /// file system extension keeps its channel rights private for the lifetime of the connection.
+    private func verifyPeer(from message: xpc_object_t) throws(Errno) {
+        var code: SecCode?
+
+        let codeStatus = SecCodeCreateWithXPCMessage(message, SecCSFlags(), &code)
+        guard codeStatus == errSecSuccess, let code else {
+            Logger.mount.error("Failed to identify peer: \(codeStatus)")
+            throw .permissionDenied
+        }
+
+        let text = """
+            anchor apple generic and \
+            certificate leaf[subject.OU] = "\(Variant.developmentTeam)"
+            """
+        var requirement: SecRequirement?
+        let requirementStatus = SecRequirementCreateWithString(
+            text as CFString,
+            SecCSFlags(),
+            &requirement
+        )
+        guard requirementStatus == errSecSuccess, let requirement else {
+            Logger.mount.error("Failed to create peer requirement: \(requirementStatus)")
+            throw .permissionDenied
+        }
+
+        let status = SecCodeCheckValidity(code, SecCSFlags(), requirement)
+        guard status == errSecSuccess else {
+            Logger.mount.error("Peer signature is invalid: \(status)")
+            throw .permissionDenied
+        }
     }
 
     /// Returns the current channel flags.
