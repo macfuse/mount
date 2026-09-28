@@ -93,8 +93,8 @@ enum Mounter {
         /// Installing or updating the helper tools failed.
         case installingFailed(InstallCommandError)
 
-        /// The peer code-signing requirement could not be configured on the XPC connection.
-        case settingPeerCodeSigningRequirementFailed
+        /// The mount-service reply did not come from a valid macFUSE-signed process.
+        case verifyingMountServiceFailed
 
         /// The mount service reply could not be decoded.
         case unpackingReplyFailed
@@ -156,12 +156,10 @@ enum Mounter {
         }
     }
 
-    /// Creates an XPC connection to the mount service.
+    /// Creates an activated XPC connection to the mount service.
     ///
     /// - Returns: An activated XPC connection to the mount service.
-    /// - Throws: ``Error/settingPeerCodeSigningRequirementFailed`` if the peer code-signing
-    ///   requirement cannot be configured.
-    private static func connect() throws(Error) -> xpc_connection_t {
+    private static func connect() -> xpc_connection_t {
         let connection = xpc_connection_create_mach_service(
             Variant.mountMachServiceName,
             nil,
@@ -169,37 +167,7 @@ enum Mounter {
         )
 
         xpc_connection_set_event_handler(connection) { _ in }
-
-        if #available(macOS 14.4, *) {
-            /*
-             * Note: Do not use xpc_connection_set_peer_code_signing_requirement() to specify
-             * code-signing requirements for the mount service. After the process forks, incoming
-             * messages are rejected even though they satisfy the requirements.
-             */
-
-            let requirement = xpc_dictionary_create_empty()
-            xpc_dictionary_set_string(requirement, "team-identifier", Variant.developmentTeam)
-
-            let status = xpc_connection_set_peer_lightweight_code_requirement(
-                connection,
-                requirement
-            )
-            guard status == 0 else {
-                Logger.mount.error("Failed to set peer code signing requirement: \(status)")
-
-                /*
-                 * Activate and cancel the connection before throwing. Releasing the last reference
-                 * on an inactive connection is undefined. No mount request is sent on this path.
-                 */
-                xpc_connection_activate(connection)
-                xpc_connection_cancel(connection)
-
-                throw .settingPeerCodeSigningRequirementFailed
-            }
-        }
-
         xpc_connection_activate(connection)
-
         return connection
     }
 
@@ -309,7 +277,7 @@ enum Mounter {
          * XPC API directly.
          */
 
-        let connection = try connect()
+        let connection = connect()
         defer {
             xpc_connection_cancel(connection)
         }
@@ -319,7 +287,17 @@ enum Mounter {
             mountPoint: mountPoint,
             options: options,
         )
+
         let reply = xpc_connection_send_message_with_reply_sync(connection, message)
+        guard xpc_get_type(reply) == XPC_TYPE_DICTIONARY else {
+            throw .unpackingReplyFailed
+        }
+
+        do {
+            try XPC.verifyPeer(from: reply)
+        } catch {
+            throw .verifyingMountServiceFailed
+        }
 
         try unpack(reply: reply)
     }

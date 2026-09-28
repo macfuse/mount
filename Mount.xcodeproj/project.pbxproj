@@ -49,6 +49,7 @@
 		439FC1F42F7C8EAB00DF76D0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FC1F32F7C8EA900DF76D0 /* Logger.swift */; };
 		439FC1FA2F7EC26B00DF76D0 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FC1F92F7EC26700DF76D0 /* Parameters.swift */; };
 		43A979672FF5650700EC9A52 /* UnsafePointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A979662FF5650200EC9A52 /* UnsafePointer.swift */; };
+		43B630403069FBAF00992D0A /* XPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B6303F3069FBAC00992D0A /* XPC.swift */; };
 		43CB253E2FC7A258001F517B /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CB253D2FC7A256001F517B /* Bridge.swift */; };
 		43CB25402FC8592C001F517B /* Deadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CB253F2FC85929001F517B /* Deadline.swift */; };
 		43D7A0622FF3B00000F00001 /* Trampoline.c in Sources */ = {isa = PBXBuildFile; fileRef = 43D7A0612FF3B00000F00001 /* Trampoline.c */; };
@@ -107,6 +108,7 @@
 		439FC1F32F7C8EA900DF76D0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		439FC1F92F7EC26700DF76D0 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		43A979662FF5650200EC9A52 /* UnsafePointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafePointer.swift; sourceTree = "<group>"; };
+		43B6303F3069FBAC00992D0A /* XPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPC.swift; sourceTree = "<group>"; };
 		43CB253D2FC7A256001F517B /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		43CB253F2FC85929001F517B /* Deadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deadline.swift; sourceTree = "<group>"; };
 		43D7A0612FF3B00000F00001 /* Trampoline.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Trampoline.c; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				43CB253F2FC85929001F517B /* Deadline.swift */,
 				439FC1D92F7AA3F500DF76D0 /* Mounter.swift */,
 				439FC1F92F7EC26700DF76D0 /* Parameters.swift */,
+				43B6303F3069FBAC00992D0A /* XPC.swift */,
 				438DDD502F87498A004CF4E0 /* Localizable.xcstrings */,
 			);
 			path = Mount;
@@ -405,6 +408,7 @@
 				433BF3B62FB3F67B003DF5AD /* XPCMessage.swift in Sources */,
 				436BFC192F8AECA600D314FF /* Channel.swift in Sources */,
 				43CB25402FC8592C001F517B /* Deadline.swift in Sources */,
+				43B630403069FBAF00992D0A /* XPC.swift in Sources */,
 				438F798E2F9CF6AE0045FFF8 /* DeviceTransport.swift in Sources */,
 				43D7A0622FF3B00000F00001 /* Trampoline.c in Sources */,
 				433BF3BD2FB412DF003DF5AD /* MFMessage.swift in Sources */,

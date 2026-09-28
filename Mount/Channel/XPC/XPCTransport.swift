@@ -13,7 +13,6 @@ import Darwin
 import Dispatch
 import Foundation
 import OSLog
-import Security
 import System
 @preconcurrency import XPC
 
@@ -142,7 +141,20 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
 
             do {
                 if !self.isPeerVerified {
-                    try self.verifyPeer(from: event)
+                    /*
+                     * Verify the code signature of the peer associated with the XPC message.
+                     *
+                     * Authentication is performed once to avoid repeated signature-validation
+                     * costs. Efficient authentication of every message would require the private
+                     * API `xpc_dictionary_get_audit_token()` to compare each message's sender with
+                     * the initially validated process.
+                     *
+                     * Later messages are trusted on the established connection. This assumes the
+                     * authenticated file system extension keeps its channel rights private for the
+                     * lifetime of the connection.
+                     */
+
+                    try XPC.verifyPeer(from: event)
                     self.isPeerVerified = true
                 }
 
@@ -168,46 +180,6 @@ final class XPCTransport: Channel.Transport, @unchecked Sendable {
 
         Logger.mount.info("Connection to file system extension established")
         $connection.resolve(connection)
-    }
-
-    /// Validates the accepted peer's signature before decoding its first message.
-    ///
-    /// Authentication is performed once to avoid repeated signature-validation costs. Efficient
-    /// authentication of every message would require the private function
-    /// `xpc_dictionary_get_audit_token()` to compare each message's sender with the initially
-    /// validated process.
-    ///
-    /// Later messages are trusted on the established connection. This assumes the authenticated
-    /// file system extension keeps its channel rights private for the lifetime of the connection.
-    private func verifyPeer(from message: xpc_object_t) throws(Errno) {
-        var code: SecCode?
-
-        let codeStatus = SecCodeCreateWithXPCMessage(message, SecCSFlags(), &code)
-        guard codeStatus == errSecSuccess, let code else {
-            Logger.mount.error("Failed to identify peer: \(codeStatus)")
-            throw .permissionDenied
-        }
-
-        let text = """
-            anchor apple generic and \
-            certificate leaf[subject.OU] = "\(Variant.developmentTeam)"
-            """
-        var requirement: SecRequirement?
-        let requirementStatus = SecRequirementCreateWithString(
-            text as CFString,
-            SecCSFlags(),
-            &requirement
-        )
-        guard requirementStatus == errSecSuccess, let requirement else {
-            Logger.mount.error("Failed to create peer requirement: \(requirementStatus)")
-            throw .permissionDenied
-        }
-
-        let status = SecCodeCheckValidity(code, SecCSFlags(), requirement)
-        guard status == errSecSuccess else {
-            Logger.mount.error("Peer signature is invalid: \(status)")
-            throw .permissionDenied
-        }
     }
 
     /// Returns the current channel flags.

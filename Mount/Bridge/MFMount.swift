@@ -140,15 +140,13 @@ public func MFMount(
                  */
 
                 Bridge.log(level: .error, "Failed to install helper tools")
-            } catch .settingPeerCodeSigningRequirementFailed {
+            } catch .verifyingMountServiceFailed {
                 /*
-                 * This is an unexpected error that is most likely the result of by a malformed or
-                 * illegal peer code signing requirement string. There is no way for users to
-                 * resolve this.
+                 * This is an unexpected error. The identity of the mount service could not be
+                 * verified.
                  */
 
-                Bridge.log(level: .error,
-                           "Failed to set peer code signing requirements for mount service")
+                Bridge.log(level: .error, "Failed to verify identity of mount-service")
             } catch .unpackingReplyFailed {
                 /*
                  * This is an unexpected error, most likely caused by a version mismatch between the
